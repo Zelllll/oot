@@ -1062,39 +1062,34 @@ loop_25:
 }
 */
 
-#ifdef NON_MATCHING
-// Small regalloc, reorderings near the end
 void func_800AEFC8(SkyboxContext *skyboxCtx, s16 skyboxId) {
-    s32 phi_s3 = 0;
     s32 phi_s1;
+    s32 phi_s2;
+    s32 phi_s3 = 0;
 
     if (skyboxId == 2 || (skyboxId > 0x10 && skyboxId < 0x19)) {
-        for (phi_s1 = 0; phi_s1 < 2; phi_s1++) {
+        for (phi_s2 = 0, phi_s1 = 0; phi_s1 < 2; phi_s1++, phi_s2 += 2) {
             phi_s3 = func_800ADBB0(skyboxCtx, skyboxCtx->roomVtx, phi_s3, 
                     D_8012AEBC[phi_s1].unk_0, D_8012AEBC[phi_s1].unk_4,
                     D_8012AEBC[phi_s1].unk_8, D_8012AEBC[phi_s1].unk_C, D_8012AEBC[phi_s1].unk_10, 
-                    phi_s1, phi_s1 * 2);
+                    phi_s1, phi_s2);
         }
     } else if (skyboxCtx->unk_140 == 2) {
-        for (phi_s1 = 0; phi_s1 < 3; phi_s1++) {
+        for (phi_s2 = 0, phi_s1 = 0; phi_s1 < 3; phi_s1++, phi_s2 += 2) {
             phi_s3 = func_800ADBB0(skyboxCtx, skyboxCtx->roomVtx, phi_s3, 
                     D_8012AEBC[phi_s1].unk_0, D_8012AEBC[phi_s1].unk_4,
                     D_8012AEBC[phi_s1].unk_8, D_8012AEBC[phi_s1].unk_C, D_8012AEBC[phi_s1].unk_10, 
-                    phi_s1, phi_s1 * 2);
+                    phi_s1, phi_s2);
         }
     } else {
-        for (phi_s1 = 0; phi_s1 < 4; phi_s1++) {
+        for (phi_s2 = 0, phi_s1 = 0; phi_s1 < 4; phi_s1++, phi_s2 += 2) {
             phi_s3 = func_800ADBB0(skyboxCtx, skyboxCtx->roomVtx, phi_s3, 
                     D_8012AEBC[phi_s1].unk_0, D_8012AEBC[phi_s1].unk_4,
                     D_8012AEBC[phi_s1].unk_8, D_8012AEBC[phi_s1].unk_C, D_8012AEBC[phi_s1].unk_10, 
-                    phi_s1, phi_s1 * 2);
+                    phi_s1, phi_s2);
         }
     }
 }
-#else
-void func_800AEFC8(SkyboxContext *skyboxCtx, s16 skyboxId);
-#pragma GLOBAL_ASM("asm/non_matchings/code/z_vr_box/func_800AEFC8.s")
-#endif
 
 void func_800AF178(SkyboxContext *skyboxCtx, s32 arg1) {
     s32 phi_s2 = 0;
@@ -1152,7 +1147,7 @@ void func_800AF218(GlobalContext* globalCtx, SkyboxContext* skyboxCtx, s16 skybo
                 globalCtx->envCtx.unk_11 = sp40 = D_8011FC1C[phi_v1][phi_v0].unk_6;
                 if (D_8011FC1C[phi_v1][phi_v0].unk_4 != 0) {
                     globalCtx->envCtx.unk_13 = 
-                            func_8006F93C(D_8011FC1C[phi_v1][phi_v0].unk_2, D_8011FC1C[phi_v1][phi_v0].unk_0, gSaveContext.environmentTime) * 255.0f;
+                            func_8006F93C(D_8011FC1C[phi_v1][phi_v0].unk_2, D_8011FC1C[phi_v1][phi_v0].unk_0, ((void)0,gSaveContext.environmentTime)) * 255.0f;
                 } else {
                     globalCtx->envCtx.unk_13 = 0;
                 }
