@@ -192,7 +192,7 @@ void func_8099898C(DoorWarp1* this, GlobalContext* globalCtx) {
 
 void func_80998C90(DoorWarp1* this, GlobalContext* globalCtx) {
     SkelAnime_Init(globalCtx, &this->skelAnime, &D_06002CA8, &D_06001374, 0, 0, 0);
-    SkelAnime_ChangeAnimImpl(&this->skelAnime, &D_06001374, 1.0f, 1.0f, 1.0f, 2, 40.0f, 1);
+    Animation_ChangeImpl(&this->skelAnime, &D_06001374, 1.0f, 1.0f, 1.0f, 2, 40.0f, 1);
     this->unk_1AC = 0;
     this->unk_1AE = -0x8C;
     this->unk_1B0 = -0x50;
@@ -223,10 +223,10 @@ void func_80998E5C(DoorWarp1* this, GlobalContext* globalCtx) {
     s16 i;
 
     SkelAnime_Init(globalCtx, &this->skelAnime, &D_06002CA8, &D_06001374, 0, 0, 0);
-    SkelAnime_ChangeAnimImpl(&this->skelAnime, &D_06001374, 0, 
-            SkelAnime_GetFrameCount(&D_06001374.common), 
-            SkelAnime_GetFrameCount(&D_06001374.common), 2, 0.0f, 1);
-    this->skelAnime.curFrame = SkelAnime_GetFrameCount(&D_06001374.common);
+    Animation_ChangeImpl(&this->skelAnime, &D_06001374, 0, 
+            Animation_GetLastFrame(&D_06001374.common), 
+            Animation_GetLastFrame(&D_06001374.common), 2, 0.0f, 1);
+    this->skelAnime.curFrame = Animation_GetLastFrame(&D_06001374.common);
     this->unk_1AC = 0xA;
     this->unk_1AE = 0x78;
     this->unk_1B0 = 0xE6;
@@ -252,10 +252,10 @@ void func_80998E5C(DoorWarp1* this, GlobalContext* globalCtx) {
 
 void func_80998FF4(DoorWarp1* this, GlobalContext* globalCtx) {
     SkelAnime_Init(globalCtx, &this->skelAnime, &D_06002CA8, &D_06001374, NULL, NULL, 0);
-    SkelAnime_ChangeAnimImpl(&this->skelAnime, &D_06001374, 0, 
-            SkelAnime_GetFrameCount(&D_06001374.common),
-            SkelAnime_GetFrameCount(&D_06001374.common), 2, 0.0f, 1);
-    this->skelAnime.curFrame = SkelAnime_GetFrameCount(&D_06001374.common);
+    Animation_ChangeImpl(&this->skelAnime, &D_06001374, 0, 
+            Animation_GetLastFrame(&D_06001374.common),
+            Animation_GetLastFrame(&D_06001374.common), 2, 0.0f, 1);
+    this->skelAnime.curFrame = Animation_GetLastFrame(&D_06001374.common);
     this->unk_1AE = 0x78;
     this->unk_1B0 = 0xE6;
     this->unk_192 = 0xC8;
@@ -668,9 +668,9 @@ void func_8099A508(DoorWarp1* this, GlobalContext* globalCtx) {
         return;
     }
     Audio_PlaySoundGeneral(NA_SE_EV_LINK_WARP, &player->actor.projectedPos, 4, &D_801333E0, &D_801333E0, &D_801333E8);
-    SkelAnime_ChangeAnimImpl(&this->skelAnime, &D_06001374, 1.0f, 
-            SkelAnime_GetFrameCount(&D_06001374.common), 
-            SkelAnime_GetFrameCount(&D_06001374.common), 2, 40.0f, 1);
+    Animation_ChangeImpl(&this->skelAnime, &D_06001374, 1.0f, 
+            Animation_GetLastFrame(&D_06001374.common), 
+            Animation_GetLastFrame(&D_06001374.common), 2, 40.0f, 1);
     this->unk_1B2 = 0x32;
     func_80998780(this, func_8099A5EC);
 }
@@ -885,7 +885,7 @@ void func_8099B140(DoorWarp1* this, GlobalContext* globalCtx) {
                                         NULL, NULL, &this->actor, POLY_XLU_DISP);
 
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_door_warp1.c", 2098);
-    SkelAnime_FrameUpdateMatrix(&this->skelAnime);
+    SkelAnime_Update(&this->skelAnime);
 }
 
 void func_8099B33C(DoorWarp1* this, GlobalContext* globalCtx) {
@@ -905,7 +905,7 @@ void func_8099B33C(DoorWarp1* this, GlobalContext* globalCtx) {
                                         NULL, NULL, &this->actor, POLY_XLU_DISP);
 
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_door_warp1.c", 2152);
-    SkelAnime_FrameUpdateMatrix(&this->skelAnime);
+    SkelAnime_Update(&this->skelAnime);
 }
 
 #ifdef NON_MATCHING
