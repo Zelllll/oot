@@ -187,7 +187,6 @@ typedef enum {
 } ButtonStatus;
 
 typedef enum {
-<<<<<<< HEAD
     /* 0x00 */ HS_HBA,          // horseback archery
     /* 0x01 */ HS_POE_POINTS,
     /* 0x02 */ HS_FISHING,
@@ -196,7 +195,8 @@ typedef enum {
     /* 0x05 */ HS_UNK_05,
     /* 0x06 */ HS_DAMPE_RACE
 } HighScores;
-=======
+
+typedef enum {
     /* 0x00 */ CHAMBER_CS_FOREST,
     /* 0x01 */ CHAMBER_CS_FIRE,
     /* 0x02 */ CHAMBER_CS_WATER,
@@ -204,6 +204,5 @@ typedef enum {
     /* 0x04 */ CHAMBER_CS_SHADOW,
     /* 0x05 */ CHAMBER_CS_LIGHT
 } ChamberCutsceneNum;
->>>>>>> d97b738a1421b50c7401c254f9c351a005846dbe
 
 #endif
