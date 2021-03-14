@@ -10,7 +10,7 @@ void DoorWarp1_Update(Actor* thisx, GlobalContext* globalCtx);
 void DoorWarp1_Draw(Actor* thisx, GlobalContext* globalCtx);
 
 void func_80999724(DoorWarp1* this, GlobalContext* globalCtx);
-void func_8099AEE4(DoorWarp1* this, GlobalContext* globalCtx); 
+void func_8099AEE4(DoorWarp1* this, GlobalContext* globalCtx);
 void func_8099B020(DoorWarp1* this, GlobalContext* globalCtx);
 void func_80999580(DoorWarp1* this, GlobalContext* globalCtx);
 void func_8099A3A4(DoorWarp1* this, GlobalContext* globalCtx);
@@ -72,13 +72,11 @@ void DoorWarp1_Init(Actor* thisx, GlobalContext* globalCtx) {
     Actor_ProcessInitChain(&this->actor, sInitChain);
     ActorShape_Init(&this->actor.shape, 0.0f, NULL, 0.0f);
     if (this->actor.params != 2 && this->actor.params != -2 && this->actor.params != 4 && this->actor.params != 6) {
-        Lights_PointNoGlowSetInfo(&this->unk_1C8, 
-                this->actor.world.pos.x, this->actor.world.pos.y, this->actor.world.pos.z, 
-                0, 0, 0, 0);
+        Lights_PointNoGlowSetInfo(&this->unk_1C8, this->actor.world.pos.x, this->actor.world.pos.y,
+                                  this->actor.world.pos.z, 0, 0, 0, 0);
         this->unk_1C4 = LightContext_InsertLight(globalCtx2, &globalCtx2->lightCtx, &this->unk_1C8);
-        Lights_PointNoGlowSetInfo(&this->unk_1DC, 
-            this->actor.world.pos.x, this->actor.world.pos.y, this->actor.world.pos.z, 
-            0, 0, 0, 0);
+        Lights_PointNoGlowSetInfo(&this->unk_1DC, this->actor.world.pos.x, this->actor.world.pos.y,
+                                  this->actor.world.pos.z, 0, 0, 0, 0);
         this->unk_1D8 = LightContext_InsertLight(globalCtx2, &globalCtx2->lightCtx, &this->unk_1DC);
     }
     osSyncPrintf("\nBOSSWARP arg_data=[%d]", this->actor.params);
@@ -143,16 +141,10 @@ void func_8099898C(DoorWarp1* this, GlobalContext* globalCtx) {
         case 4:
         case 6:
         default:
-            Lights_PointNoGlowSetInfo(&this->unk_1C8, 
-                    this->actor.world.pos.x, 
-                    this->actor.world.pos.y, 
-                    this->actor.world.pos.z, 
-                    200, 255, 255, 255);
-            Lights_PointNoGlowSetInfo(&this->unk_1DC, 
-                    this->actor.world.pos.x, 
-                    this->actor.world.pos.y, 
-                    this->actor.world.pos.z, 
-                    200, 255, 255, 255);
+            Lights_PointNoGlowSetInfo(&this->unk_1C8, this->actor.world.pos.x, this->actor.world.pos.y,
+                                      this->actor.world.pos.z, 200, 255, 255, 255);
+            Lights_PointNoGlowSetInfo(&this->unk_1DC, this->actor.world.pos.x, this->actor.world.pos.y,
+                                      this->actor.world.pos.z, 200, 255, 255, 255);
         case 0:
         case 1:
         case 3:
@@ -168,12 +160,13 @@ void func_8099898C(DoorWarp1* this, GlobalContext* globalCtx) {
             func_80998780(this, func_80999580);
             break;
         case 6:
-            if ((!(gSaveContext.entranceIndex == 0x608 || // sacred forest meadow
-                gSaveContext.entranceIndex == 0x564 ||  // death mountain crater
-                gSaveContext.entranceIndex == 0x60C ||  // lake hylia
-                gSaveContext.entranceIndex == 0x610 ||  // desert colossus
-                gSaveContext.entranceIndex == 0x580) &&  // graveyard
-                gSaveContext.sceneSetupIndex < 4) || (PLAYER->actor.params & 0xF00) != 0x200) {
+            if ((!(gSaveContext.entranceIndex == 0x608 ||  // sacred forest meadow
+                   gSaveContext.entranceIndex == 0x564 ||  // death mountain crater
+                   gSaveContext.entranceIndex == 0x60C ||  // lake hylia
+                   gSaveContext.entranceIndex == 0x610 ||  // desert colossus
+                   gSaveContext.entranceIndex == 0x580) && // graveyard
+                 gSaveContext.sceneSetupIndex < 4) ||
+                (PLAYER->actor.params & 0xF00) != 0x200) {
                 Actor_Kill(&this->actor);
             }
             if (Actor_WorldDistXZToActor(&player->actor, &this->actor) > 100.0f) {
@@ -206,16 +199,10 @@ void func_80998C90(DoorWarp1* this, GlobalContext* globalCtx) {
     this->unk_1A4 = 0.0f;
     this->alpha = 0.0f;
     this->unk_19C = 0.0f;
-    Lights_PointNoGlowSetInfo(&this->unk_1C8,
-            this->actor.world.pos.x,
-            this->actor.world.pos.y,
-            this->actor.world.pos.z,
-            0xC8, 0xFF, 0xFF, 0xFF);
-    Lights_PointNoGlowSetInfo(&this->unk_1DC,
-            this->actor.world.pos.x,
-            this->actor.world.pos.y,
-            this->actor.world.pos.z,
-            0xC8, 0xFF, 0xFF, 0xFF);
+    Lights_PointNoGlowSetInfo(&this->unk_1C8, this->actor.world.pos.x, this->actor.world.pos.y, this->actor.world.pos.z,
+                              0xC8, 0xFF, 0xFF, 0xFF);
+    Lights_PointNoGlowSetInfo(&this->unk_1DC, this->actor.world.pos.x, this->actor.world.pos.y, this->actor.world.pos.z,
+                              0xC8, 0xFF, 0xFF, 0xFF);
     func_80998780(this, func_8099A3A4);
 }
 
@@ -223,9 +210,8 @@ void func_80998E5C(DoorWarp1* this, GlobalContext* globalCtx) {
     s16 i;
 
     SkelAnime_Init(globalCtx, &this->skelAnime, &D_06002CA8, &D_06001374, 0, 0, 0);
-    Animation_ChangeImpl(&this->skelAnime, &D_06001374, 0, 
-            Animation_GetLastFrame(&D_06001374.common), 
-            Animation_GetLastFrame(&D_06001374.common), 2, 0.0f, 1);
+    Animation_ChangeImpl(&this->skelAnime, &D_06001374, 0, Animation_GetLastFrame(&D_06001374.common),
+                         Animation_GetLastFrame(&D_06001374.common), 2, 0.0f, 1);
     this->skelAnime.curFrame = Animation_GetLastFrame(&D_06001374.common);
     this->unk_1AC = 0xA;
     this->unk_1AE = 0x78;
@@ -252,9 +238,8 @@ void func_80998E5C(DoorWarp1* this, GlobalContext* globalCtx) {
 
 void func_80998FF4(DoorWarp1* this, GlobalContext* globalCtx) {
     SkelAnime_Init(globalCtx, &this->skelAnime, &D_06002CA8, &D_06001374, NULL, NULL, 0);
-    Animation_ChangeImpl(&this->skelAnime, &D_06001374, 0, 
-            Animation_GetLastFrame(&D_06001374.common),
-            Animation_GetLastFrame(&D_06001374.common), 2, 0.0f, 1);
+    Animation_ChangeImpl(&this->skelAnime, &D_06001374, 0, Animation_GetLastFrame(&D_06001374.common),
+                         Animation_GetLastFrame(&D_06001374.common), 2, 0.0f, 1);
     this->skelAnime.curFrame = Animation_GetLastFrame(&D_06001374.common);
     this->unk_1AE = 0x78;
     this->unk_1B0 = 0xE6;
@@ -308,7 +293,7 @@ void func_80999214(DoorWarp1* this, GlobalContext* globalCtx) {
     phi_f0 = CLAMP_MIN(phi_f0, 0);
 
     for (phi_v1 = 0; phi_v1 < 3; phi_v1++) {
-        globalCtx->envCtx.unk_8C[0][phi_v1] = globalCtx->envCtx.unk_8C[2][phi_v1] = 
+        globalCtx->envCtx.unk_8C[0][phi_v1] = globalCtx->envCtx.unk_8C[2][phi_v1] =
             globalCtx->envCtx.unk_8C[1][phi_v1] = -255.0f * phi_f0;
     }
     globalCtx->envCtx.unk_9E = -500.0f * phi_f0;
@@ -397,16 +382,10 @@ void func_809995D4(DoorWarp1* this, GlobalContext* globalCtx) {
             this->actor.world.pos.y = 827.0f;
             this->actor.world.pos.z = -3228.0f;
         }
-        Lights_PointNoGlowSetInfo(&this->unk_1C8, 
-                this->actor.world.pos.x, 
-                this->actor.world.pos.y, 
-                this->actor.world.pos.z, 
-                0xC8, 0xFF, 0xFF, 0xFF);
-        Lights_PointNoGlowSetInfo(&this->unk_1DC, 
-                this->actor.world.pos.x, 
-                this->actor.world.pos.y, 
-                this->actor.world.pos.z, 
-                0xC8, 0xFF, 0xFF, 0xFF);
+        Lights_PointNoGlowSetInfo(&this->unk_1C8, this->actor.world.pos.x, this->actor.world.pos.y,
+                                  this->actor.world.pos.z, 0xC8, 0xFF, 0xFF, 0xFF);
+        Lights_PointNoGlowSetInfo(&this->unk_1DC, this->actor.world.pos.x, this->actor.world.pos.y,
+                                  this->actor.world.pos.z, 0xC8, 0xFF, 0xFF, 0xFF);
         func_80998780(this, func_80999724);
     }
     this->unk_192--;
@@ -533,16 +512,12 @@ void func_80999A68(DoorWarp1* this, GlobalContext* globalCtx) {
     }
     Math_StepToF(&this->unk_194, 2.0f, 0.01f);
     Math_StepToF(&this->unk_198, 10.0f, 0.02f);
-    Lights_PointNoGlowSetInfo(&this->unk_1C8, 
-            (s16)player->actor.world.pos.x + 10.0f, 
-            (s16)player->actor.world.pos.y + 10.0f, 
-            (s16)player->actor.world.pos.z + 10.0f, 
-            0xEB, 0xFF, 0xFF, 0xFF);
-    Lights_PointNoGlowSetInfo(&this->unk_1DC, 
-            (s16)player->actor.world.pos.x - 10.0f, 
-            (s16)player->actor.world.pos.y - 10.0f, 
-            (s16)player->actor.world.pos.z - 10.0f, 
-            0xEB, 0xFF, 0xFF, 0xFF);
+    Lights_PointNoGlowSetInfo(&this->unk_1C8, (s16)player->actor.world.pos.x + 10.0f,
+                              (s16)player->actor.world.pos.y + 10.0f, (s16)player->actor.world.pos.z + 10.0f, 0xEB,
+                              0xFF, 0xFF, 0xFF);
+    Lights_PointNoGlowSetInfo(&this->unk_1DC, (s16)player->actor.world.pos.x - 10.0f,
+                              (s16)player->actor.world.pos.y - 10.0f, (s16)player->actor.world.pos.z - 10.0f, 0xEB,
+                              0xFF, 0xFF, 0xFF);
     Math_SmoothStepToF(&this->actor.shape.yOffset, 0.0f, 0.5f, 2.0f, 0.1f);
 }
 
@@ -615,16 +590,12 @@ void func_8099A098(DoorWarp1* this, GlobalContext* globalCtx) {
     }
     Math_StepToF(&this->unk_194, 2.0f, 0.01f);
     Math_StepToF(&this->unk_198, 10.f, 0.02f);
-    Lights_PointNoGlowSetInfo(&this->unk_1C8, 
-            (s16)player->actor.world.pos.x + 10.0f, 
-            (s16)player->actor.world.pos.y + 10.0f, 
-            (s16)player->actor.world.pos.z + 10.0f, 
-            0xEB, 0xFF, 0xFF, 0xFF);
-    Lights_PointNoGlowSetInfo(&this->unk_1DC, 
-            (s16)player->actor.world.pos.x - 10.0f, 
-            (s16)player->actor.world.pos.y - 10.0f, 
-            (s16)player->actor.world.pos.z - 10.0f, 
-            0xEB, 0xFF, 0xFF, 0xFF);
+    Lights_PointNoGlowSetInfo(&this->unk_1C8, (s16)player->actor.world.pos.x + 10.0f,
+                              (s16)player->actor.world.pos.y + 10.0f, (s16)player->actor.world.pos.z + 10.0f, 0xEB,
+                              0xFF, 0xFF, 0xFF);
+    Lights_PointNoGlowSetInfo(&this->unk_1DC, (s16)player->actor.world.pos.x - 10.0f,
+                              (s16)player->actor.world.pos.y - 10.0f, (s16)player->actor.world.pos.z - 10.0f, 0xEB,
+                              0xFF, 0xFF, 0xFF);
     Math_SmoothStepToF(&this->actor.shape.yOffset, 0.0f, 0.5f, 2.0f, 0.1f);
 }
 
@@ -668,9 +639,8 @@ void func_8099A508(DoorWarp1* this, GlobalContext* globalCtx) {
         return;
     }
     Audio_PlaySoundGeneral(NA_SE_EV_LINK_WARP, &player->actor.projectedPos, 4, &D_801333E0, &D_801333E0, &D_801333E8);
-    Animation_ChangeImpl(&this->skelAnime, &D_06001374, 1.0f, 
-            Animation_GetLastFrame(&D_06001374.common), 
-            Animation_GetLastFrame(&D_06001374.common), 2, 40.0f, 1);
+    Animation_ChangeImpl(&this->skelAnime, &D_06001374, 1.0f, Animation_GetLastFrame(&D_06001374.common),
+                         Animation_GetLastFrame(&D_06001374.common), 2, 40.0f, 1);
     this->unk_1B2 = 0x32;
     func_80998780(this, func_8099A5EC);
 }
@@ -678,7 +648,7 @@ void func_8099A508(DoorWarp1* this, GlobalContext* globalCtx) {
 void func_8099A5EC(DoorWarp1* this, GlobalContext* globalCtx) {
     Player* player = PLAYER;
     f32 temp_f0_2;
-    
+
     if (this->unk_1B2 != 0) {
         this->unk_1B2--;
     }
@@ -729,7 +699,7 @@ void func_8099A5EC(DoorWarp1* this, GlobalContext* globalCtx) {
                 } else {
                     globalCtx->nextEntranceIndex = 0x564;
                 }
-            gSaveContext.nextCutsceneIndex = 0;
+                gSaveContext.nextCutsceneIndex = 0;
             }
         } else if (globalCtx->sceneNum == 0x16) {
             if (!(gSaveContext.eventChkInf[4] & 0x400)) {
@@ -792,16 +762,12 @@ void func_8099A5EC(DoorWarp1* this, GlobalContext* globalCtx) {
         globalCtx->envCtx.unk_E2[3] = (u32)(255.0f * phi_f0);
         osSyncPrintf("\nparcent=[%f]", phi_f0);
     }
-    Lights_PointNoGlowSetInfo(&this->unk_1C8, 
-                (s16)player->actor.world.pos.x + 10.0f, 
-                (s16)player->actor.world.pos.y + 10.0f, 
-                (s16)player->actor.world.pos.z + 10.0f, 
-                0xEB, 0xFF, 0xFF, 0xFF);
-    Lights_PointNoGlowSetInfo(&this->unk_1DC, 
-                (s16)player->actor.world.pos.x - 10.0f, 
-                (s16)player->actor.world.pos.y - 10.0f, 
-                (s16)player->actor.world.pos.z - 10.0f, 
-                0xEB, 0xFF, 0xFF, 0xFF);
+    Lights_PointNoGlowSetInfo(&this->unk_1C8, (s16)player->actor.world.pos.x + 10.0f,
+                              (s16)player->actor.world.pos.y + 10.0f, (s16)player->actor.world.pos.z + 10.0f, 0xEB,
+                              0xFF, 0xFF, 0xFF);
+    Lights_PointNoGlowSetInfo(&this->unk_1DC, (s16)player->actor.world.pos.x - 10.0f,
+                              (s16)player->actor.world.pos.y - 10.0f, (s16)player->actor.world.pos.z - 10.0f, 0xEB,
+                              0xFF, 0xFF, 0xFF);
     Math_SmoothStepToF(&this->actor.shape.yOffset, 800.0f, 0.5f, 15.0f, 0.1f);
     this->actor.shape.rot.y += 0x320;
     Math_SmoothStepToF(&this->unk_1BC, 1.13f, 0.2f, 0.1f, 0.01f);
@@ -816,9 +782,8 @@ void func_8099A5EC(DoorWarp1* this, GlobalContext* globalCtx) {
         s16 phi_v1;
 
         for (phi_v1 = 0; phi_v1 < 3; phi_v1++) {
-            globalCtx->envCtx.unk_8C[0][phi_v1] = 
-                globalCtx->envCtx.unk_8C[2][phi_v1] = 
-                    globalCtx->envCtx.unk_8C[1][phi_v1] = -255.0f * temp_f0_2;
+            globalCtx->envCtx.unk_8C[0][phi_v1] = globalCtx->envCtx.unk_8C[2][phi_v1] =
+                globalCtx->envCtx.unk_8C[1][phi_v1] = -255.0f * temp_f0_2;
         }
 
         globalCtx->envCtx.unk_9E = -500.0f * temp_f0_2;
@@ -851,7 +816,6 @@ void func_8099AEE4(DoorWarp1* this, GlobalContext* globalCtx) {
 }
 
 void func_8099B014(DoorWarp1* this, GlobalContext* globalCtx) {
-
 }
 
 void func_8099B020(DoorWarp1* this, GlobalContext* globalCtx) {
@@ -881,8 +845,8 @@ void func_8099B140(DoorWarp1* this, GlobalContext* globalCtx) {
     func_80093D84(globalCtx->state.gfxCtx);
     gDPSetPrimColor(POLY_XLU_DISP++, 0xFF, 0xFF, 200, 255, 255, (u8)this->alpha);
     gDPSetEnvColor(POLY_XLU_DISP++, 0, 100, 255, (u8)this->alpha);
-    POLY_XLU_DISP = SkelAnime_Draw(globalCtx, this->skelAnime.skeleton, this->skelAnime.jointTable, 
-                                        NULL, NULL, &this->actor, POLY_XLU_DISP);
+    POLY_XLU_DISP = SkelAnime_Draw(globalCtx, this->skelAnime.skeleton, this->skelAnime.jointTable, NULL, NULL,
+                                   &this->actor, POLY_XLU_DISP);
 
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_door_warp1.c", 2098);
     SkelAnime_Update(&this->skelAnime);
@@ -893,16 +857,16 @@ void func_8099B33C(DoorWarp1* this, GlobalContext* globalCtx) {
     Vec3f eye;
 
     eye.x = -(Math_SinS((globalCtx->state.frames * 200)) * 120.0f) * 80.0f;
-    eye.y =  (Math_CosS((globalCtx->state.frames * 200)) * 120.0f) * 80.0f;
-    eye.z =  (Math_CosS((globalCtx->state.frames * 200)) * 120.0f) * 80.0f;
+    eye.y = (Math_CosS((globalCtx->state.frames * 200)) * 120.0f) * 80.0f;
+    eye.z = (Math_CosS((globalCtx->state.frames * 200)) * 120.0f) * 80.0f;
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_door_warp1.c", 2122);
 
     func_80093D84(globalCtx->state.gfxCtx);
     func_8002EB44(&this->actor.world.pos, &eye, &eye, globalCtx->state.gfxCtx);
     gDPSetPrimColor(POLY_XLU_DISP++, 0, 0, 255, 255, 255, (u8)this->alpha);
     gDPSetEnvColor(POLY_XLU_DISP++, 150, 0, 100, (u8)this->alpha);
-    POLY_XLU_DISP = SkelAnime_Draw(globalCtx, this->skelAnime.skeleton, this->skelAnime.jointTable, 
-                                        NULL, NULL, &this->actor, POLY_XLU_DISP);
+    POLY_XLU_DISP = SkelAnime_Draw(globalCtx, this->skelAnime.skeleton, this->skelAnime.jointTable, NULL, NULL,
+                                   &this->actor, POLY_XLU_DISP);
 
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_door_warp1.c", 2152);
     SkelAnime_Update(&this->skelAnime);
@@ -926,36 +890,41 @@ void func_8099B5EC(DoorWarp1* this, GlobalContext* globalCtx) {
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_door_warp1.c", 2173);
 
     temp_f0 = 1.0f - (2.0f - this->unk_194) / 1.7f;
-    if (this->actor.params != 4 && this->actor.params != 6 && this->actor.params != 8 &&
-        this->actor.params != 9 && this->actor.params != 10) {
+
+    if (this->actor.params != 4 && this->actor.params != 6 && this->actor.params != 8 && this->actor.params != 9 &&
+        this->actor.params != 10) {
         this->unk_19C += (s16)(temp_f0 * 15.0f);
     }
+
     if (this->actor.params == 6) {
-        this->unk_19C -= (s16)(temp_f0 + temp_f0);
+        this->unk_19C -= (s16)(temp_f0 * 2.0f);
     }
+
     func_80093D84(globalCtx->state.gfxCtx);
+
     switch (this->actor.params) {
-        case 4:  
-            gDPSetPrimColor(POLY_XLU_DISP++, 0x00, 0x80, 255, 255, 255, this->unk_1A4); 
+        case 4:
+            gDPSetPrimColor(POLY_XLU_DISP++, 0x00, 0x80, 255, 255, 255, this->unk_1A4);
             gDPSetEnvColor(POLY_XLU_DISP++, 200, 255, 0, 255);
-            break; 
-        case 8:  
-            gDPSetPrimColor(POLY_XLU_DISP++, 0x00, 0x80, 255, 255, 255, this->unk_1A4); 
+            break;
+        case 8:
+            gDPSetPrimColor(POLY_XLU_DISP++, 0x00, 0x80, 255, 255, 255, this->unk_1A4);
             gDPSetEnvColor(POLY_XLU_DISP++, 255, 150, 0, 255);
             break;
-        case 9:  
-            gDPSetPrimColor(POLY_XLU_DISP++, 0x00, 0x80, 255, 255, 255, this->unk_1A4); 
+        case 9:
+            gDPSetPrimColor(POLY_XLU_DISP++, 0x00, 0x80, 255, 255, 255, this->unk_1A4);
             gDPSetEnvColor(POLY_XLU_DISP++, 0, 200, 0, 255);
             break;
-        case 10: 
-            gDPSetPrimColor(POLY_XLU_DISP++, 0x00, 0x80, 255, 255, 255, this->unk_1A4); 
+        case 10:
+            gDPSetPrimColor(POLY_XLU_DISP++, 0x00, 0x80, 255, 255, 255, this->unk_1A4);
             gDPSetEnvColor(POLY_XLU_DISP++, 255, 50, 0, 255);
             break;
-        default: 
-            gDPSetPrimColor(POLY_XLU_DISP++, 0x00, 0x80, 255 * temp_f0, 255, 255, this->unk_1A4); 
+        default:
+            gDPSetPrimColor(POLY_XLU_DISP++, 0x00, 0x80, 255 * temp_f0, 255, 255, this->unk_1A4);
             gDPSetEnvColor(POLY_XLU_DISP++, 0, 255 * temp_f0, 255, 255);
             break;
     }
+
     gDPSetColorDither(POLY_XLU_DISP++, G_CD_DISABLE);
     gDPSetColorDither(POLY_XLU_DISP++, G_AD_NOTPATTERN | G_CD_MAGICSQ);
 
@@ -963,12 +932,13 @@ void func_8099B5EC(DoorWarp1* this, GlobalContext* globalCtx) {
     gSPSegment(POLY_XLU_DISP++, 0x0A, Matrix_NewMtx(globalCtx->state.gfxCtx, "../z_door_warp1.c", 2247));
     Matrix_Push();
 
-    gSPSegment(POLY_XLU_DISP++, 0x08, Gfx_TwoTexScroll(globalCtx->state.gfxCtx, 0, 
-            spEC & 0xFF, -((s16)(this->unk_19C + this->unk_19C) & 511), 0x100, 0x100, 1, 
-            spEC & 0xFF, -((s16)(this->unk_19C + this->unk_19C) & 511), 0x100, 0x100));
+    gSPSegment(POLY_XLU_DISP++, 0x08,
+               Gfx_TwoTexScroll(globalCtx->state.gfxCtx, 0, spEC & 0xFF, -((s16)(this->unk_19C + this->unk_19C) & 511),
+                                0x100, 0x100, 1, spEC & 0xFF, -((s16)(this->unk_19C + this->unk_19C) & 511), 0x100,
+                                0x100));
 
     Matrix_Translate(0.0f, this->unk_194 * 230.0f, 0.0f, MTXMODE_APPLY);
-    temp_f12 = (((f32) this->unk_1AE * spE8) / 100.0f) + 1.0f;
+    temp_f12 = (((f32)this->unk_1AE * spE8) / 100.0f) + 1.0f;
     Matrix_Scale(temp_f12, 1.0f, temp_f12, MTXMODE_APPLY);
     gSPSegment(POLY_XLU_DISP++, 0x09, Matrix_NewMtx(globalCtx->state.gfxCtx, "../z_door_warp1.c", 2267));
     gSPDisplayList(POLY_XLU_DISP++, D_060001A0);
@@ -999,12 +969,12 @@ void func_8099B5EC(DoorWarp1* this, GlobalContext* globalCtx) {
         }
         spEC *= 2;
 
-        gSPSegment(POLY_XLU_DISP++, 0x08, Gfx_TwoTexScroll(globalCtx->state.gfxCtx, 0, 
-                spEC & 0xFF, -((s16)this->unk_19C & 511), 0x100, 0x100, 1, 
-                spEC & 0xFF, -((s16)this->unk_19C & 511), 0x100, 0x100));
+        gSPSegment(POLY_XLU_DISP++, 0x08,
+                   Gfx_TwoTexScroll(globalCtx->state.gfxCtx, 0, spEC & 0xFF, -((s16)this->unk_19C & 511), 0x100, 0x100,
+                                    1, spEC & 0xFF, -((s16)this->unk_19C & 511), 0x100, 0x100));
 
         Matrix_Translate(0.0f, this->unk_198 * 60.0f, 0.0f, MTXMODE_APPLY);
-        temp_f12 = (((f32) this->unk_1B0 * spE4) / 100.0f) + 1.0f;
+        temp_f12 = (((f32)this->unk_1B0 * spE4) / 100.0f) + 1.0f;
         Matrix_Scale(temp_f12, 1.0f, temp_f12, MTXMODE_APPLY);
         gSPSegment(POLY_XLU_DISP++, 0x09, Matrix_NewMtx(globalCtx->state.gfxCtx, "../z_door_warp1.c", 2336));
         gSPDisplayList(POLY_XLU_DISP++, D_060001A0);
