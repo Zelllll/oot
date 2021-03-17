@@ -1,1107 +1,80 @@
 #include "global.h"
 #include "vt.h"
 
+u32 D_8012AC90[] = {
+    0x00000000,
+    0x00010000,
+    0x00020000,
+    0x00030000,
+};
+
+u32 D_8012ACA0[] = {
+    0x00000002, 0x000A000C, 0x00020004, 0x000C000E, 0x000A000C, 0x00140016, 0x000C000E, 0x00160018,
+    0x00010003, 0x00050006, 0x00070008, 0x0009000B, 0x000D000F, 0x00100011, 0x00120013, 0x00150017,
+    0x00140016, 0x001E0020, 0x00160018, 0x00200022, 0x001E0020, 0x0028002A, 0x00200022, 0x002A002C,
+    0x00150017, 0x0019001A, 0x001B001C, 0x001D001F, 0x00210023, 0x00240025, 0x00260027, 0x0029002B,
+};
+
+u32 D_8012AD20[] = {
+    0x00000FC0,
+    0x1F802F40,
+    0x3F000000,
+};
+
+u32 D_8012AD2C[] = {
+    0x000007C0, 0x0F801740, 0x1F0026C0, 0x2E803640, 0x3E000000,
+};
+
+u32 D_8012AD40[] = {
+    0x00000010, 0x00130012, 0x00100001, 0x00140013, 0x00010011, 0x00150014, 0x00110005, 0x00160015,
+    0x00120013, 0x00170002, 0x00130014, 0x00030017, 0x00140015, 0x00180003, 0x00150016, 0x00070018,
+    0x00020017, 0x001A0019, 0x00170003, 0x001B001A, 0x00030018, 0x001C001B, 0x00180007, 0x001D001C,
+    0x0019001A, 0x001E000A, 0x001A001B, 0x000B001E, 0x001B001C, 0x001F000B, 0x001C001D, 0x000F001F,
+};
+
+u32 D_8012ADC0[] = {
+    0x00000000, 0x00002000, 0x00004000, 0x00006000, 0x00008000, 0x0000C000,
+};
+
+u32 D_8012ADD8[] = {
+    0x00000002, 0x000A000C, 0x00020004, 0x000C000E, 0x000A000C, 0x00140016, 0x000C000E, 0x00160018,
+    0x00010003, 0x00050006, 0x00070008, 0x0009000B, 0x000D000F, 0x00100011, 0x00120013, 0x00150017,
+};
+
+u32 D_8012AE18[] = {
+    0x000007C0,
+    0x0F801740,
+    0x1F000000,
+};
+
+u32 D_8012AE24[] = {
+    0x000007C0,
+    0x0F801740,
+    0x1F000000,
+};
+
+u32 D_8012AE30[] = {
+    0x000007C0,
+    0x0F8007C0,
+    0x00000000,
+};
+
+u32 D_8012AE3C[] = {
+    0x00000010, 0x00130012, 0x00100001, 0x00140013, 0x00010011, 0x00150014, 0x00110005, 0x00160015,
+    0x00120013, 0x00170002, 0x00130014, 0x00030017, 0x00140015, 0x00180003, 0x00150016, 0x00070018,
+    0x00020017, 0x001A0019, 0x00170003, 0x001B001A, 0x00030018, 0x001C001B, 0x00180007, 0x001D001C,
+    0x0019001A, 0x001E000A, 0x001A001B, 0x000B001E, 0x001B001C, 0x001F000B, 0x001C001D, 0x000F001F,
+};
+
 typedef struct {
-    /* 0x000 */ s32 unk_0;
-    /* 0x004 */ s32 unk_4;
-    /* 0x008 */ s32 unk_8;
-    /* 0x00C */ s32 unk_C;
-    /* 0x010 */ s32 unk_10;
-} Struct_8012AF0C; // size = 0x14
+    /* 0x000 */ s32 x; // X position of a corner of the sky cube
+    /* 0x004 */ s32 y; // Y position of a corner of the sky cube
+    /* 0x008 */ s32 z; // Z position of a corner of the sky cube
+    /* 0x00C */ s32 width; // Width of the subdivisions
+    /* 0x010 */ s32 height; // Height of the subdivisions
+} SkyCubeInfo; // size = 0x14
 
-extern Struct_8012AF0C D_8012AF0C[6];
-extern Struct_8012AF0C D_8012AEBC[4];
-
-s32 func_800ADBB0(SkyboxContext *skyboxCtx, Vtx *roomVtx, s32, UNK_TYPE, UNK_TYPE, UNK_TYPE, UNK_TYPE, UNK_TYPE, s32, s32);
-#pragma GLOBAL_ASM("asm/non_matchings/code/z_vr_box/func_800ADBB0.s")
-/* s32 func_800ADBB0(SkyboxContext *skyboxCtx, Vtx *roomVtx, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8, s32 arg9) {
-    s32 sp424;
-    ? sp358;
-    ? sp2A4;
-    ? sp1F0;
-    ? sp13C;
-    ? sp88;
-    void *sp54;
-    s32 sp38;
-    ? *temp_a1;
-    ? *temp_a1_2;
-    ? *temp_a2;
-    ? *temp_a2_2;
-    ? *temp_a2_3;
-    ? *temp_a3;
-    ? *temp_t0;
-    ? *temp_t0_2;
-    ? *temp_t0_3;
-    Gfx *temp_v1_10;
-    Gfx *temp_v1_11;
-    Gfx *temp_v1_12;
-    Gfx *temp_v1_13;
-    Gfx *temp_v1_14;
-    Gfx *temp_v1_15;
-    Gfx *temp_v1_5;
-    Gfx *temp_v1_6;
-    Gfx *temp_v1_7;
-    Gfx *temp_v1_8;
-    Gfx *temp_v1_9;
-    Vtx *temp_v0_4;
-    s16 temp_ra;
-    s16 temp_t0_4;
-    s16 temp_t1;
-    s16 temp_t1_2;
-    s16 temp_t1_3;
-    s16 temp_t1_5;
-    s16 temp_t2;
-    s32 temp_a2_4;
-    s32 temp_a3_2;
-    s32 temp_s6;
-    s32 temp_s6_2;
-    s32 temp_s6_3;
-    s32 temp_t1_4;
-    s32 temp_t3;
-    s32 temp_t4;
-    s32 temp_v0;
-    s32 temp_v0_2;
-    s32 temp_v0_3;
-    s32 temp_v0_5;
-    s32 temp_v0_7;
-    s32 temp_v1_4;
-    u32 temp_a0;
-    u32 temp_a0_2;
-    u32 temp_a0_3;
-    u32 temp_a1_3;
-    void *temp_v0_6;
-    void *temp_v1;
-    void *temp_v1_2;
-    void *temp_v1_3;
-    ? *phi_a1;
-    ? *phi_a2;
-    s32 phi_t2;
-    ? *phi_a3;
-    ? *phi_t0;
-    void *phi_s4;
-    u32 phi_a0;
-    ? *phi_a2_2;
-    s32 phi_t2_2;
-    ? *phi_a3_2;
-    ? *phi_a1_2;
-    ? *phi_t0_2;
-    void *phi_s4_2;
-    u32 phi_a0_2;
-    ? *phi_a3_3;
-    ? *phi_a2_3;
-    s32 phi_t2_3;
-    ? *phi_a1_3;
-    ? *phi_t0_3;
-    void *phi_s4_3;
-    u32 phi_a0_3;
-    void *phi_a1_4;
-    Vtx *phi_v0;
-    s32 phi_t1;
-    s16 phi_a2_4;
-    s16 phi_a0_4;
-    s16 phi_t2_4;
-    s16 phi_t1_2;
-    s16 phi_ra;
-
-    switch (arg8) {
-        default:
-            temp_s6 = arg3 + arg6;
-            phi_a1 = &sp1F0;
-            phi_a2 = &sp358;
-            phi_t2 = arg4;
-            phi_a3 = &sp2A4;
-            phi_t0 = &sp13C;
-            phi_s4 = &D_8012AD2C;
-            phi_a0 = &sp88;
-loop_3:
-                phi_a1->unk0 = arg5;
-                phi_a2->unk0 = arg3;
-                phi_a3->unk0 = phi_t2;
-                temp_t1 = *phi_s4;
-                temp_v1 = &D_8012AD20 + (1 * 2);
-                temp_v0 = temp_s6 + arg6;
-                phi_a2->unk8 = temp_v0;
-                temp_v0 = temp_v0 + arg6;
-                *phi_t0 = D_8012AD20;
-                phi_a2->unkC = temp_v0;
-                temp_a0 = phi_a0 + 0x14;
-                phi_a3->unk10 = phi_t2;
-                phi_a3->unkC = phi_t2;
-                phi_a3->unk8 = phi_t2;
-                phi_a3->unk4 = phi_t2;
-                phi_a2->unk10 = temp_v0 + arg6;
-                phi_a1->unk10 = arg5;
-                phi_a1->unkC = arg5;
-                phi_a1->unk8 = arg5;
-                temp_a1 = phi_a1 + 0x14;
-                temp_a2 = phi_a2 + 0x14;
-                temp_t0 = phi_t0 + 0x14;
-                temp_a1->unk-10 = arg5;
-                temp_a2->unk-10 = temp_s6;
-                temp_a0->unk-14 = temp_t1;
-                temp_a0->unk-C = temp_t1;
-                temp_a0->unk-8 = temp_t1;
-                temp_a0->unk-4 = temp_t1;
-                temp_a0->unk-10 = temp_t1;
-                temp_t0->unk-8 = temp_v1->unk4;
-                temp_t0->unk-C = temp_v1->unk2;
-                temp_t0->unk-4 = temp_v1->unk6;
-                temp_t0->unk-10 = temp_v1->unk0;
-                phi_a1 = temp_a1;
-                phi_a2 = temp_a2;
-                phi_t2 = phi_t2 + arg7;
-                phi_a3 = phi_a3 + 0x14;
-                phi_t0 = temp_t0;
-                phi_s4 = phi_s4 + 2;
-                phi_a0 = temp_a0;
-            if (temp_a0 < &sp13C) {
-                goto loop_3;
-            }
-            break;
-        case 1:
-        case 3:
-            temp_s6_2 = arg5 + arg6;
-            phi_a2_2 = &sp358;
-            phi_t2_2 = arg4;
-            phi_a3_2 = &sp2A4;
-            phi_a1_2 = &sp1F0;
-            phi_t0_2 = &sp13C;
-            phi_s4_2 = &D_8012AD2C;
-            phi_a0_2 = &sp88;
-loop_6:
-                phi_a2_2->unk0 = arg3;
-                phi_a3_2->unk0 = phi_t2_2;
-                phi_a1_2->unk0 = arg5;
-                temp_t1_2 = *phi_s4_2;
-                temp_v1_2 = &D_8012AD20 + (1 * 2);
-                temp_v0_2 = temp_s6_2 + arg6;
-                phi_a1_2->unk8 = temp_v0_2;
-                temp_v0_2 = temp_v0_2 + arg6;
-                *phi_t0_2 = D_8012AD20;
-                phi_a1_2->unkC = temp_v0_2;
-                temp_a0_2 = phi_a0_2 + 0x14;
-                phi_a3_2->unk10 = phi_t2_2;
-                phi_a3_2->unkC = phi_t2_2;
-                phi_a3_2->unk8 = phi_t2_2;
-                phi_a3_2->unk4 = phi_t2_2;
-                phi_a1_2->unk10 = temp_v0_2 + arg6;
-                phi_a2_2->unk10 = arg3;
-                phi_a2_2->unkC = arg3;
-                phi_a2_2->unk8 = arg3;
-                temp_a1_2 = phi_a1_2 + 0x14;
-                temp_a2_2 = phi_a2_2 + 0x14;
-                temp_t0_2 = phi_t0_2 + 0x14;
-                temp_a2_2->unk-10 = arg3;
-                temp_a1_2->unk-10 = temp_s6_2;
-                temp_a0_2->unk-14 = temp_t1_2;
-                temp_a0_2->unk-C = temp_t1_2;
-                temp_a0_2->unk-8 = temp_t1_2;
-                temp_a0_2->unk-4 = temp_t1_2;
-                temp_a0_2->unk-10 = temp_t1_2;
-                temp_t0_2->unk-8 = temp_v1_2->unk4;
-                temp_t0_2->unk-C = temp_v1_2->unk2;
-                temp_t0_2->unk-4 = temp_v1_2->unk6;
-                temp_t0_2->unk-10 = temp_v1_2->unk0;
-                phi_a2_2 = temp_a2_2;
-                phi_t2_2 = phi_t2_2 + arg7;
-                phi_a3_2 = phi_a3_2 + 0x14;
-                phi_a1_2 = temp_a1_2;
-                phi_t0_2 = temp_t0_2;
-                phi_s4_2 = phi_s4_2 + 2;
-                phi_a0_2 = temp_a0_2;
-            if (temp_a0_2 < &sp13C) {
-                goto loop_6;
-            }
-            break;
-        case 4:
-        case 5:
-            temp_s6_3 = arg3 + arg6;
-            phi_a3_3 = &sp2A4;
-            phi_a2_3 = &sp358;
-            phi_t2_3 = arg5;
-            phi_a1_3 = &sp1F0;
-            phi_t0_3 = &sp13C;
-            phi_s4_3 = &D_8012AD2C;
-            phi_a0_3 = &sp88;
-loop_9:
-                phi_a3_3->unk0 = arg4;
-                phi_a2_3->unk0 = arg3;
-                phi_a1_3->unk0 = phi_t2_3;
-                temp_t1_3 = *phi_s4_3;
-                temp_v1_3 = &D_8012AD20 + (1 * 2);
-                temp_v0_3 = temp_s6_3 + arg6;
-                phi_a2_3->unk8 = temp_v0_3;
-                temp_v0_3 = temp_v0_3 + arg6;
-                *phi_t0_3 = D_8012AD20;
-                phi_a2_3->unkC = temp_v0_3;
-                temp_a0_3 = phi_a0_3 + 0x14;
-                phi_a1_3->unk10 = phi_t2_3;
-                phi_a1_3->unkC = phi_t2_3;
-                phi_a1_3->unk8 = phi_t2_3;
-                phi_a1_3->unk4 = phi_t2_3;
-                phi_a2_3->unk10 = temp_v0_3 + arg6;
-                phi_a3_3->unk10 = arg4;
-                phi_a3_3->unkC = arg4;
-                phi_a3_3->unk8 = arg4;
-                temp_a2_3 = phi_a2_3 + 0x14;
-                temp_a3 = phi_a3_3 + 0x14;
-                temp_t0_3 = phi_t0_3 + 0x14;
-                temp_a3->unk-10 = arg4;
-                temp_a2_3->unk-10 = temp_s6_3;
-                temp_a0_3->unk-14 = temp_t1_3;
-                temp_a0_3->unk-C = temp_t1_3;
-                temp_a0_3->unk-8 = temp_t1_3;
-                temp_a0_3->unk-4 = temp_t1_3;
-                temp_a0_3->unk-10 = temp_t1_3;
-                temp_t0_3->unk-8 = temp_v1_3->unk4;
-                temp_t0_3->unk-C = temp_v1_3->unk2;
-                temp_t0_3->unk-4 = temp_v1_3->unk6;
-                temp_t0_3->unk-10 = temp_v1_3->unk0;
-                phi_a3_3 = temp_a3;
-                phi_a2_3 = temp_a2_3;
-                phi_t2_3 = phi_t2_3 + arg7;
-                phi_a1_3 = phi_a1_3 + 0x14;
-                phi_t0_3 = temp_t0_3;
-                phi_s4_3 = phi_s4_3 + 2;
-                phi_a0_3 = temp_a0_3;
-            if (temp_a0_3 < &sp13C) {
-                goto loop_9;
-            }
-            break;
-    }
-
-    sp54 = &D_8012ACA0;
-    sp424 = 0;
-    phi_a2_4 = 0;
-loop_11:
-        skyboxCtx->unk_138 = skyboxCtx->dpList + (arg9 * 0x4B0) + (sp424 * 0x4B0);
-        phi_a1_4 = sp54;
-        phi_v0 = &roomVtx[arg2];
-        phi_t1 = 0;
-loop_12:
-            phi_t1++;
-            temp_v1_4 = *phi_a1_4 * 4;
-            phi_v0->v.ob = (sp + temp_v1_4)->unk358;
-            phi_v0->unk2 = (sp + temp_v1_4)->unk2A4;
-            phi_v0->v.flag = 0;
-            phi_v0->unk4 = (sp + temp_v1_4)->unk1F0;
-            phi_v0++;
-            phi_v0->unk-8 = (sp + temp_v1_4)->unk13C;
-            phi_v0->unk-3 = 0;
-            phi_v0->unk-2 = 0;
-            phi_v0->unk-4 = 0xFF;
-            phi_v0->unk-6 = (sp + temp_v1_4)->unk88;
-            phi_a1_4 += 2;
-        if (phi_t1 != 0x20) {
-            goto loop_12;
-        }
-
-        // skyboxCtx->unk_138++;
-        // skyboxCtx->unk_138->words.w0 = 0x01020040;
-        // skyboxCtx->unk_138->words.w1 = &roomVtx[arg2];
-        gSPVertex(skyboxCtx->unk_138++, &roomVtx[arg2], 32, 0);
-
-        arg2 += phi_t1;
-
-        // skyboxCtx->unk_138++;
-        // skyboxCtx->unk_138->words.w1 = 0x0000001E;
-        // skyboxCtx->unk_138->words.w0 = 0x03000000;
-        gSPCullDisplayList(skyboxCtx->unk_138++, 0, 15);
-
-        phi_ra = 0;
-        phi_t2_4 = 0;
-    loop_14:
-            temp_v0_5 = phi_a2_4 + 0x1F;
-            temp_t3 = (phi_a2_4 * 4) & 0xFFF;
-            temp_t4 = (temp_v0_5 * 4) & 0xFFF;
-            sp38 = temp_v0_5;
-            phi_a0_4 = 0;
-            phi_t1_2 = 0;
-        loop_15:
-                phi_a0_4 += 0x3F;
-
-                //skyboxCtx->unk_138++;
-                //skyboxCtx->unk_138->words.w0 = 0xFD4800FF;
-                //skyboxCtx->unk_138->words.w1 = *((arg8 * 4) + &D_8012AC90) + skyboxCtx->staticSegments;
-                gDPSetTextureImage(skyboxCtx->unk_138++, G_IM_FMT_CI, G_IM_SIZ_8b, 256, skyboxCtx->staticSegments + *((arg8 * 4) + &D_8012AC90));
-
-                temp_a1_3 = (((((phi_a0_4 * 0) + 0x47) >> 3) & 0x1FF) << 9) | 0xF5480000;
-
-                skyboxCtx->unk_138++;
-                skyboxCtx->unk_138->words.w0 = temp_a1_3;
-                skyboxCtx->unk_138->words.w1 = 0x07000000;
-
-                temp_a3_2 = ((phi_a0_4 * 4) & 0xFFF) << 0xC;
-
-                // skyboxCtx->unk_138++;
-                // skyboxCtx->unk_138->words.w1 = 0x00000000;
-                // skyboxCtx->unk_138->words.w0 = 0xE6000000;
-                gDPLoadSync(skyboxCtx->unk_138++);
-
-                temp_a2_4 = ((phi_a0_4 * 4) & 0xFFF) << 0xC;
-
-                skyboxCtx->unk_138++;
-                skyboxCtx->unk_138->words.w0 = temp_a2_4 | 0xF4000000 | temp_t3;
-                skyboxCtx->unk_138->words.w1 = temp_a3_2 | 0x07000000 | temp_t4;
-
-                // skyboxCtx->unk_138++;
-                // skyboxCtx->unk_138->words.w1 = 0x00000000;
-                // skyboxCtx->unk_138->words.w0 = 0xE7000000;
-                gDPPipeSync(skyboxCtx->unk_138++);
-
-                skyboxCtx->unk_138++;
-                skyboxCtx->unk_138->words.w1 = 0x00000000;
-                skyboxCtx->unk_138->words.w0 = temp_a1_3;
-
-                temp_v0_6 = &D_8012AD40 + (phi_t2_4 * 2);
-
-                skyboxCtx->unk_138++;
-                skyboxCtx->unk_138->words.w1 = temp_a3_2 | temp_t4;
-                skyboxCtx->unk_138->words.w0 = temp_a2_4 | 0xF2000000 | temp_t3;
-
-                phi_t1_2++;
-
-                skyboxCtx->unk_138++;
-                skyboxCtx->unk_138->words.w0 = ((temp_v0_6->unk4 * 2) & 0xFF) | (((temp_v0_6->unk0 * 2) & 0xFF) << 0x10) | (((temp_v0_6->unk2 * 2) & 0xFF) << 8) | 0x7000000;
-                skyboxCtx->unk_138->words.w1 = ((temp_v0_6->unk6 * 2) & 0xFF) | (((temp_v0_6->unk0 * 2) & 0xFF) << 0x10) | (((temp_v0_6->unk4 * 2) & 0xFF) << 8);
-
-                phi_t2_4 += 4;
-            if (phi_t1_2 < 4) {
-                goto loop_15;
-            }
-            phi_ra++;
-            phi_a2_4 = sp3A;
-        if (phi_ra < 4) {
-            goto loop_14;
-        }
-
-        // skyboxCtx->unk_138++;
-        // skyboxCtx->unk_138->words.w0 = 0xDF000000;
-        // skyboxCtx->unk_138->words.w1 = 0x00000000;
-        gSPEndDisplayList(skyboxCtx->unk_138++);
-
-        sp424++;
-        sp54 += 0x40;
-        phi_a2_4 = sp3A;
-    if (sp424 != 2) {
-        goto loop_11;
-    }
-    return arg2;
-} */
-
-s32 func_800AE2C0(SkyboxContext *skyboxCtx, Vtx *roomVtx, s32, UNK_TYPE, UNK_TYPE, UNK_TYPE, UNK_TYPE, UNK_TYPE, s32);
-#pragma GLOBAL_ASM("asm/non_matchings/code/z_vr_box/func_800AE2C0.s")
-/*
-s32 func_800AE2C0(SkyboxContext *skyboxCtx, Vtx *roomVtx, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8) {
-    s16 sp320;
-    s16 sp31E;
-    ? sp2B4;
-    ? sp250;
-    ? sp1EC;
-    ? sp188;
-    ? sp124;
-    s32 sp40;
-    ? *temp_a1;
-    ? *temp_a1_2;
-    ? *temp_a2;
-    ? *temp_a2_2;
-    ? *temp_a2_3;
-    ? *temp_a3;
-    ? *temp_t0;
-    ? *temp_t0_2;
-    ? *temp_t0_3;
-    Gfx *temp_v1_10;
-    Gfx *temp_v1_11;
-    Gfx *temp_v1_12;
-    Gfx *temp_v1_13;
-    Gfx *temp_v1_14;
-    Gfx *temp_v1_15;
-    Gfx *temp_v1_16;
-    Gfx *temp_v1_17;
-    Gfx *temp_v1_18;
-    Gfx *temp_v1_19;
-    Gfx *temp_v1_20;
-    Gfx *temp_v1_21;
-    Gfx *temp_v1_22;
-    Gfx *temp_v1_23;
-    Gfx *temp_v1_24;
-    Gfx *temp_v1_25;
-    Gfx *temp_v1_26;
-    Gfx *temp_v1_27;
-    Gfx *temp_v1_28;
-    Gfx *temp_v1_29;
-    Gfx *temp_v1_30;
-    Gfx *temp_v1_31;
-    Gfx *temp_v1_32;
-    Gfx *temp_v1_33;
-    Gfx *temp_v1_34;
-    Gfx *temp_v1_35;
-    Gfx *temp_v1_36;
-    Gfx *temp_v1_37;
-    Gfx *temp_v1_38;
-    Gfx *temp_v1_39;
-    Gfx *temp_v1_40;
-    Gfx *temp_v1_41;
-    Gfx *temp_v1_42;
-    Gfx *temp_v1_43;
-    Gfx *temp_v1_44;
-    Gfx *temp_v1_45;
-    Gfx *temp_v1_46;
-    Gfx *temp_v1_47;
-    Gfx *temp_v1_48;
-    Gfx *temp_v1_49;
-    Gfx *temp_v1_4;
-    Gfx *temp_v1_50;
-    Gfx *temp_v1_51;
-    Gfx *temp_v1_5;
-    Gfx *temp_v1_6;
-    Gfx *temp_v1_7;
-    Gfx *temp_v1_8;
-    Gfx *temp_v1_9;
-    Vtx *temp_a1_3;
-    s16 temp_s2;
-    s16 temp_s2_2;
-    s16 temp_s2_3;
-    s16 temp_t1;
-    s16 temp_t1_2;
-    s16 temp_t1_3;
-    s16 temp_t3;
-    s16 temp_t3_2;
-    s16 temp_t3_3;
-    s16 temp_t5;
-    s16 temp_t5_2;
-    s16 temp_t5_3;
-    s16 temp_v0_11;
-    s16 temp_v0_13;
-    s16 temp_v0_9;
-    s32 temp_a1_4;
-    s32 temp_a1_5;
-    s32 temp_a1_6;
-    s32 temp_a2_4;
-    s32 temp_a3_2;
-    s32 temp_a3_3;
-    s32 temp_a3_4;
-    s32 temp_at;
-    s32 temp_at_2;
-    s32 temp_s1;
-    s32 temp_s1_2;
-    s32 temp_s1_3;
-    s32 temp_s3;
-    s32 temp_s3_2;
-    s32 temp_s3_3;
-    s32 temp_s6;
-    s32 temp_s6_2;
-    s32 temp_s6_3;
-    s32 temp_t8;
-    s32 temp_t9;
-    s32 temp_v0;
-    s32 temp_v0_2;
-    s32 temp_v0_3;
-    s32 temp_v0_4;
-    s32 temp_v0_5;
-    s32 temp_v0_6;
-    s32 temp_v0_7;
-    u32 temp_a0;
-    u32 temp_a0_2;
-    u32 temp_a0_3;
-    u32 temp_a0_4;
-    u32 temp_a0_5;
-    u32 temp_a0_6;
-    u32 temp_a2_5;
-    u32 temp_a2_6;
-    u32 temp_a2_7;
-    u32 temp_t0_4;
-    u32 temp_t0_5;
-    u32 temp_t0_6;
-    u32 temp_t1_4;
-    u32 temp_t1_5;
-    u32 temp_t1_6;
-    u32 temp_t2;
-    u32 temp_t2_2;
-    u32 temp_t2_3;
-    void *temp_fp;
-    void *temp_fp_2;
-    void *temp_v0_10;
-    void *temp_v0_12;
-    void *temp_v0_8;
-    void *temp_v1;
-    void *temp_v1_2;
-    void *temp_v1_3;
-    ? *phi_a1;
-    ? *phi_a2;
-    s32 phi_t2;
-    ? *phi_a3;
-    ? *phi_t0;
-    void *phi_s4;
-    u32 phi_a0;
-    ? *phi_a2_2;
-    s32 phi_t2_2;
-    ? *phi_a3_2;
-    ? *phi_a1_2;
-    ? *phi_t0_2;
-    void *phi_s4_2;
-    u32 phi_a0_2;
-    ? *phi_a3_3;
-    ? *phi_a2_3;
-    s32 phi_t2_3;
-    ? *phi_a1_3;
-    ? *phi_t0_3;
-    void *phi_s4_3;
-    u32 phi_a0_3;
-    void *phi_a0_4;
-    Vtx *phi_a1_4;
-    s32 phi_v0;
-    s16 phi_a0_5;
-    s16 phi_s2;
-    s16 phi_t5;
-    s16 phi_a0_6;
-    s16 phi_s2_2;
-    s16 phi_t5_2;
-    s16 phi_a0_7;
-    s16 phi_s2_3;
-    s16 phi_t5_3;
-
-    if (arg8 < 6) {
-        goto **(&jtbl_80142DA8 + (arg8 * 4));
-    default:
-        temp_s6 = arg3 + arg6;
-        phi_a1 = &sp1EC;
-        phi_a2 = &sp2B4;
-        phi_t2 = arg4;
-        phi_a3 = &sp250;
-        phi_t0 = &sp188;
-        phi_s4 = &D_8012AE30;
-        phi_a0 = &sp124;
-loop_3:
-        phi_a1->unk0 = arg5;
-        phi_a2->unk0 = arg3;
-        phi_a3->unk0 = phi_t2;
-        temp_t1 = *phi_s4;
-        temp_v1 = &D_8012AE18 + (1 * 2);
-        temp_v0 = temp_s6 + arg6;
-        phi_a2->unk8 = temp_v0;
-        temp_v0_2 = temp_v0 + arg6;
-        *phi_t0 = D_8012AE18;
-        phi_a2->unkC = temp_v0_2;
-        temp_a0 = phi_a0 + 0x14;
-        phi_a3->unk10 = phi_t2;
-        phi_a3->unkC = phi_t2;
-        phi_a3->unk8 = phi_t2;
-        phi_a3->unk4 = phi_t2;
-        phi_a2->unk10 = temp_v0_2 + arg6;
-        phi_a1->unk10 = arg5;
-        phi_a1->unkC = arg5;
-        phi_a1->unk8 = arg5;
-        temp_a1 = phi_a1 + 0x14;
-        temp_a2 = phi_a2 + 0x14;
-        temp_t0 = phi_t0 + 0x14;
-        temp_a1->unk-10 = arg5;
-        temp_a2->unk-10 = temp_s6;
-        temp_a0->unk-14 = temp_t1;
-        temp_a0->unk-C = temp_t1;
-        temp_a0->unk-8 = temp_t1;
-        temp_a0->unk-4 = temp_t1;
-        temp_a0->unk-10 = temp_t1;
-        temp_t0->unk-8 = temp_v1->unk4;
-        temp_t0->unk-C = temp_v1->unk2;
-        temp_t0->unk-4 = temp_v1->unk6;
-        temp_t0->unk-10 = temp_v1->unk0;
-        phi_a1 = temp_a1;
-        phi_a2 = temp_a2;
-        phi_t2 = phi_t2 + arg7;
-        phi_a3 = phi_a3 + 0x14;
-        phi_t0 = temp_t0;
-        phi_s4 = phi_s4 + 2;
-        phi_a0 = temp_a0;
-        if (temp_a0 < &sp188) {
-            goto loop_3;
-        }
-        goto block_10;
-    case 2:
-    case 3:
-        temp_s6_2 = arg5 + arg6;
-        phi_a2_2 = &sp2B4;
-        phi_t2_2 = arg4;
-        phi_a3_2 = &sp250;
-        phi_a1_2 = &sp1EC;
-        phi_t0_2 = &sp188;
-        phi_s4_2 = &D_8012AE30;
-        phi_a0_2 = &sp124;
-loop_6:
-        phi_a2_2->unk0 = arg3;
-        phi_a3_2->unk0 = phi_t2_2;
-        phi_a1_2->unk0 = arg5;
-        temp_t1_2 = *phi_s4_2;
-        temp_v1_2 = &D_8012AE18 + (1 * 2);
-        temp_v0_3 = temp_s6_2 + arg6;
-        phi_a1_2->unk8 = temp_v0_3;
-        temp_v0_4 = temp_v0_3 + arg6;
-        *phi_t0_2 = D_8012AE18;
-        phi_a1_2->unkC = temp_v0_4;
-        temp_a0_2 = phi_a0_2 + 0x14;
-        phi_a3_2->unk10 = phi_t2_2;
-        phi_a3_2->unkC = phi_t2_2;
-        phi_a3_2->unk8 = phi_t2_2;
-        phi_a3_2->unk4 = phi_t2_2;
-        phi_a1_2->unk10 = temp_v0_4 + arg6;
-        phi_a2_2->unk10 = arg3;
-        phi_a2_2->unkC = arg3;
-        phi_a2_2->unk8 = arg3;
-        temp_a1_2 = phi_a1_2 + 0x14;
-        temp_a2_2 = phi_a2_2 + 0x14;
-        temp_t0_2 = phi_t0_2 + 0x14;
-        temp_a2_2->unk-10 = arg3;
-        temp_a1_2->unk-10 = temp_s6_2;
-        temp_a0_2->unk-14 = temp_t1_2;
-        temp_a0_2->unk-C = temp_t1_2;
-        temp_a0_2->unk-8 = temp_t1_2;
-        temp_a0_2->unk-4 = temp_t1_2;
-        temp_a0_2->unk-10 = temp_t1_2;
-        temp_t0_2->unk-8 = temp_v1_2->unk4;
-        temp_t0_2->unk-C = temp_v1_2->unk2;
-        temp_t0_2->unk-4 = temp_v1_2->unk6;
-        temp_t0_2->unk-10 = temp_v1_2->unk0;
-        phi_a2_2 = temp_a2_2;
-        phi_t2_2 = phi_t2_2 + arg7;
-        phi_a3_2 = phi_a3_2 + 0x14;
-        phi_a1_2 = temp_a1_2;
-        phi_t0_2 = temp_t0_2;
-        phi_s4_2 = phi_s4_2 + 2;
-        phi_a0_2 = temp_a0_2;
-        if (temp_a0_2 < &sp188) {
-            goto loop_6;
-        }
-        goto block_10;
-    case 4:
-    case 5:
-        temp_s6_3 = arg3 + arg6;
-        phi_a3_3 = &sp250;
-        phi_a2_3 = &sp2B4;
-        phi_t2_3 = arg5;
-        phi_a1_3 = &sp1EC;
-        phi_t0_3 = &sp188;
-        phi_s4_3 = &D_8012AE24;
-        phi_a0_3 = &sp124;
-loop_9:
-        phi_a3_3->unk0 = arg4;
-        phi_a2_3->unk0 = arg3;
-        phi_a1_3->unk0 = phi_t2_3;
-        temp_t1_3 = *phi_s4_3;
-        temp_v1_3 = &D_8012AE18 + (1 * 2);
-        temp_v0_5 = temp_s6_3 + arg6;
-        phi_a2_3->unk8 = temp_v0_5;
-        temp_v0_6 = temp_v0_5 + arg6;
-        *phi_t0_3 = D_8012AE18;
-        phi_a2_3->unkC = temp_v0_6;
-        temp_a0_3 = phi_a0_3 + 0x14;
-        phi_a1_3->unk10 = phi_t2_3;
-        phi_a1_3->unkC = phi_t2_3;
-        phi_a1_3->unk8 = phi_t2_3;
-        phi_a1_3->unk4 = phi_t2_3;
-        phi_a2_3->unk10 = temp_v0_6 + arg6;
-        phi_a3_3->unk10 = arg4;
-        phi_a3_3->unkC = arg4;
-        phi_a3_3->unk8 = arg4;
-        temp_a2_3 = phi_a2_3 + 0x14;
-        temp_a3 = phi_a3_3 + 0x14;
-        temp_t0_3 = phi_t0_3 + 0x14;
-        temp_a3->unk-10 = arg4;
-        temp_a2_3->unk-10 = temp_s6_3;
-        temp_a0_3->unk-14 = temp_t1_3;
-        temp_a0_3->unk-C = temp_t1_3;
-        temp_a0_3->unk-8 = temp_t1_3;
-        temp_a0_3->unk-4 = temp_t1_3;
-        temp_a0_3->unk-10 = temp_t1_3;
-        temp_t0_3->unk-8 = temp_v1_3->unk4;
-        temp_t0_3->unk-C = temp_v1_3->unk2;
-        temp_t0_3->unk-4 = temp_v1_3->unk6;
-        temp_t0_3->unk-10 = temp_v1_3->unk0;
-        phi_a3_3 = temp_a3;
-        phi_a2_3 = temp_a2_3;
-        phi_t2_3 = phi_t2_3 + arg7;
-        phi_a1_3 = phi_a1_3 + 0x14;
-        phi_t0_3 = temp_t0_3;
-        phi_s4_3 = phi_s4_3 + 2;
-        phi_a0_3 = temp_a0_3;
-        if (temp_a0_3 < &sp188) {
-            goto loop_9;
-        }
-    }
-block_10:
-    skyboxCtx->unk_138 = skyboxCtx->dpList + (arg8 * 0x960);
-    phi_a0_4 = &D_8012ADD8;
-    phi_a1_4 = &roomVtx[arg2];
-    phi_v0 = 0;
-loop_11:
-    temp_v0_7 = phi_v0 + 1;
-    temp_a2_4 = *phi_a0_4 * 4;
-    phi_a1_4->v.ob = *(&sp2B4 + temp_a2_4);
-    temp_a1_3 = phi_a1_4 + 0x10;
-    temp_a1_3->unk-E = *(&sp250 + temp_a2_4);
-    temp_a1_3->unk-A = 0;
-    temp_a1_3->unk-C = *(&sp1EC + temp_a2_4);
-    temp_a1_3->unk-8 = *(&sp188 + temp_a2_4);
-    temp_a1_3->unk-3 = 0;
-    temp_a1_3->unk-2 = 0;
-    temp_a1_3->unk-4 = 0xFF;
-    temp_a1_3->unk-6 = *(&sp124 + temp_a2_4);
-    phi_a0_4 = phi_a0_4 + 2;
-    phi_a1_4 = temp_a1_3;
-    phi_v0 = temp_v0_7;
-    if (temp_v0_7 != 0x20) {
-        goto loop_11;
-    }
-    temp_v1_4 = skyboxCtx->unk_138;
-    skyboxCtx->unk_138 = temp_v1_4 + 8;
-    temp_v1_4->words.w0 = 0x1020040;
-    temp_v1_4->words.w1 = &roomVtx[arg2];
-    arg2 = arg2 + temp_v0_7;
-    temp_v1_5 = skyboxCtx->unk_138;
-    skyboxCtx->unk_138 = temp_v1_5 + 8;
-    temp_v1_5->words.w1 = 0x1E;
-    temp_v1_5->words.w0 = 0x3000000;
-    if ((arg8 == 4) || (arg8 == 5)) {
-        temp_fp_2 = (arg8 * 4) + &D_8012ADC0;
-        sp31E = 0;
-        sp320 = 0;
-        phi_s2_3 = 0;
-loop_15:
-        temp_t8 = sp320 + 0x1F;
-        temp_s3_3 = (sp320 * 4) & 0xFFF;
-        temp_s1_3 = (temp_t8 * 4) & 0xFFF;
-        sp40 = temp_t8;
-        phi_a0_7 = 0;
-        phi_t5_3 = 0;
-loop_16:
-        temp_v1_36 = skyboxCtx->unk_138;
-        temp_t3_3 = phi_a0_7 + 0x1F;
-        skyboxCtx->unk_138 = temp_v1_36 + 8;
-        temp_v1_36->words.w0 = 0xFD48007F;
-        temp_v1_36->words.w1 = *temp_fp_2 + skyboxCtx->staticSegments;
-        temp_v1_37 = skyboxCtx->unk_138;
-        skyboxCtx->unk_138 = temp_v1_37 + 8;
-        temp_a2_7 = (((((phi_a0_7 * 0) + 0x27) >> 3) & 0x1FF) << 9) | 0xF5480000;
-        temp_v1_37->words.w0 = temp_a2_7;
-        temp_v1_37->words.w1 = 0x7000000;
-        temp_v1_38 = skyboxCtx->unk_138;
-        temp_a3_4 = ((temp_t3_3 * 4) & 0xFFF) << 0xC;
-        skyboxCtx->unk_138 = temp_v1_38 + 8;
-        temp_v1_38->words.w1 = 0;
-        temp_v1_38->words.w0 = 0xE6000000;
-        temp_v1_39 = skyboxCtx->unk_138;
-        temp_a1_6 = ((phi_a0_7 * 4) & 0xFFF) << 0xC;
-        skyboxCtx->unk_138 = temp_v1_39 + 8;
-        temp_t1_6 = temp_a3_4 | 0x7000000 | temp_s1_3;
-        temp_t0_6 = temp_a1_6 | 0xF4000000 | temp_s3_3;
-        temp_v1_39->words.w0 = temp_t0_6;
-        temp_v1_39->words.w1 = temp_t1_6;
-        temp_v1_40 = skyboxCtx->unk_138;
-        skyboxCtx->unk_138 = temp_v1_40 + 8;
-        temp_v1_40->words.w1 = 0;
-        temp_v1_40->words.w0 = 0xE7000000;
-        temp_v1_41 = skyboxCtx->unk_138;
-        temp_t2_3 = temp_a1_6 | 0xF2000000 | temp_s3_3;
-        skyboxCtx->unk_138 = temp_v1_41 + 8;
-        temp_v1_41->words.w1 = 0;
-        temp_v1_41->words.w0 = temp_a2_7;
-        temp_v1_42 = skyboxCtx->unk_138;
-        temp_a0_6 = temp_a2_7 | 0x80;
-        skyboxCtx->unk_138 = temp_v1_42 + 8;
-        temp_v1_42->words.w1 = temp_a3_4 | temp_s1_3;
-        temp_v1_42->words.w0 = temp_t2_3;
-        temp_v1_43 = skyboxCtx->unk_138;
-        temp_t5_3 = phi_t5_3 + 1;
-        skyboxCtx->unk_138 = temp_v1_43 + 8;
-        temp_v1_43->words.w0 = 0xFD48007F;
-        temp_v1_43->words.w1 = *temp_fp_2 + skyboxCtx->unk12C;
-        temp_v1_44 = skyboxCtx->unk_138;
-        skyboxCtx->unk_138 = temp_v1_44 + 8;
-        temp_v1_44->words.w1 = 0x7000000;
-        temp_v1_44->words.w0 = temp_a0_6;
-        temp_v1_45 = skyboxCtx->unk_138;
-        skyboxCtx->unk_138 = temp_v1_45 + 8;
-        temp_v1_45->words.w1 = 0;
-        temp_v1_45->words.w0 = 0xE6000000;
-        temp_v1_46 = skyboxCtx->unk_138;
-        skyboxCtx->unk_138 = temp_v1_46 + 8;
-        temp_v1_46->words.w1 = temp_t1_6;
-        temp_v1_46->words.w0 = temp_t0_6;
-        temp_v1_47 = skyboxCtx->unk_138;
-        skyboxCtx->unk_138 = temp_v1_47 + 8;
-        temp_v1_47->words.w1 = 0;
-        temp_v1_47->words.w0 = 0xE7000000;
-        temp_v1_48 = skyboxCtx->unk_138;
-        skyboxCtx->unk_138 = temp_v1_48 + 8;
-        temp_v1_48->words.w1 = 0x1000000;
-        temp_v1_48->words.w0 = temp_a0_6;
-        temp_v1_49 = skyboxCtx->unk_138;
-        skyboxCtx->unk_138 = temp_v1_49 + 8;
-        temp_v1_49->words.w1 = temp_a3_4 | 0x1000000 | temp_s1_3;
-        temp_v1_49->words.w0 = temp_t2_3;
-        temp_v1_50 = skyboxCtx->unk_138;
-        temp_v0_12 = (phi_s2_3 * 2) + &D_8012AE3C;
-        skyboxCtx->unk_138 = temp_v1_50 + 8;
-        temp_v1_50->words.w0 = ((temp_v0_12->unk4 * 2) & 0xFF) | (((temp_v0_12->unk0 * 2) & 0xFF) << 0x10) | (((temp_v0_12->unk2 * 2) & 0xFF) << 8) | 0x7000000;
-        temp_s2_3 = phi_s2_3 + 4;
-        temp_v1_50->words.w1 = ((temp_v0_12->unk6 * 2) & 0xFF) | (((temp_v0_12->unk0 * 2) & 0xFF) << 0x10) | (((temp_v0_12->unk4 * 2) & 0xFF) << 8);
-        phi_a0_7 = temp_t3_3;
-        phi_s2_3 = temp_s2_3;
-        phi_t5_3 = temp_t5_3;
-        if (temp_t5_3 < 4) {
-            goto loop_16;
-        }
-        temp_v0_13 = sp31E + 1;
-        temp_at_2 = temp_v0_13 < 4;
-        sp31E = temp_v0_13;
-        sp320 = sp40;
-        phi_s2_3 = temp_s2_3;
-        if (temp_at_2 != 0) {
-            goto loop_15;
-        }
-    } else {
-        temp_fp = (arg8 * 4) + &D_8012ADC0;
-        sp31E = 0;
-        sp320 = 0;
-        phi_s2 = 0;
-loop_20:
-        temp_t9 = sp320 + 0x1F;
-        temp_s3 = (sp320 * 4) & 0xFFF;
-        temp_s1 = (temp_t9 * 4) & 0xFFF;
-        sp40 = temp_t9;
-        phi_a0_5 = 0;
-        phi_t5 = 0;
-loop_21:
-        temp_v1_6 = skyboxCtx->unk_138;
-        temp_t3 = phi_a0_5 + 0x1F;
-        skyboxCtx->unk_138 = temp_v1_6 + 8;
-        temp_v1_6->words.w0 = 0xFD48007F;
-        temp_v1_6->words.w1 = *temp_fp + skyboxCtx->staticSegments;
-        temp_v1_7 = skyboxCtx->unk_138;
-        skyboxCtx->unk_138 = temp_v1_7 + 8;
-        temp_a2_5 = (((((phi_a0_5 * 0) + 0x27) >> 3) & 0x1FF) << 9) | 0xF5480000;
-        temp_v1_7->words.w0 = temp_a2_5;
-        temp_v1_7->words.w1 = 0x7000000;
-        temp_v1_8 = skyboxCtx->unk_138;
-        temp_a3_2 = ((temp_t3 * 4) & 0xFFF) << 0xC;
-        skyboxCtx->unk_138 = temp_v1_8 + 8;
-        temp_v1_8->words.w1 = 0;
-        temp_v1_8->words.w0 = 0xE6000000;
-        temp_v1_9 = skyboxCtx->unk_138;
-        temp_a1_4 = ((phi_a0_5 * 4) & 0xFFF) << 0xC;
-        skyboxCtx->unk_138 = temp_v1_9 + 8;
-        temp_t1_4 = temp_a3_2 | 0x7000000 | temp_s1;
-        temp_t0_4 = temp_a1_4 | 0xF4000000 | temp_s3;
-        temp_v1_9->words.w0 = temp_t0_4;
-        temp_v1_9->words.w1 = temp_t1_4;
-        temp_v1_10 = skyboxCtx->unk_138;
-        skyboxCtx->unk_138 = temp_v1_10 + 8;
-        temp_v1_10->words.w1 = 0;
-        temp_v1_10->words.w0 = 0xE7000000;
-        temp_v1_11 = skyboxCtx->unk_138;
-        temp_t2 = temp_a1_4 | 0xF2000000 | temp_s3;
-        skyboxCtx->unk_138 = temp_v1_11 + 8;
-        temp_v1_11->words.w1 = 0;
-        temp_v1_11->words.w0 = temp_a2_5;
-        temp_v1_12 = skyboxCtx->unk_138;
-        temp_a0_4 = temp_a2_5 | 0x80;
-        skyboxCtx->unk_138 = temp_v1_12 + 8;
-        temp_v1_12->words.w1 = temp_a3_2 | temp_s1;
-        temp_v1_12->words.w0 = temp_t2;
-        temp_v1_13 = skyboxCtx->unk_138;
-        temp_t5 = phi_t5 + 1;
-        skyboxCtx->unk_138 = temp_v1_13 + 8;
-        temp_v1_13->words.w0 = 0xFD48007F;
-        temp_v1_13->words.w1 = *temp_fp + skyboxCtx->unk12C;
-        temp_v1_14 = skyboxCtx->unk_138;
-        skyboxCtx->unk_138 = temp_v1_14 + 8;
-        temp_v1_14->words.w1 = 0x7000000;
-        temp_v1_14->words.w0 = temp_a0_4;
-        temp_v1_15 = skyboxCtx->unk_138;
-        skyboxCtx->unk_138 = temp_v1_15 + 8;
-        temp_v1_15->words.w1 = 0;
-        temp_v1_15->words.w0 = 0xE6000000;
-        temp_v1_16 = skyboxCtx->unk_138;
-        skyboxCtx->unk_138 = temp_v1_16 + 8;
-        temp_v1_16->words.w1 = temp_t1_4;
-        temp_v1_16->words.w0 = temp_t0_4;
-        temp_v1_17 = skyboxCtx->unk_138;
-        skyboxCtx->unk_138 = temp_v1_17 + 8;
-        temp_v1_17->words.w1 = 0;
-        temp_v1_17->words.w0 = 0xE7000000;
-        temp_v1_18 = skyboxCtx->unk_138;
-        skyboxCtx->unk_138 = temp_v1_18 + 8;
-        temp_v1_18->words.w1 = 0x1000000;
-        temp_v1_18->words.w0 = temp_a0_4;
-        temp_v1_19 = skyboxCtx->unk_138;
-        skyboxCtx->unk_138 = temp_v1_19 + 8;
-        temp_v1_19->words.w1 = temp_a3_2 | 0x1000000 | temp_s1;
-        temp_v1_19->words.w0 = temp_t2;
-
-        temp_v0_8 = (phi_s2 * 2) + &D_8012AE3C;
-
-        skyboxCtx->unk_138 = skyboxCtx->unk_138 + 8;
-        skyboxCtx->unk_138->words.w0 = ((temp_v0_8->unk4 * 2) & 0xFF) | (((temp_v0_8->unk0 * 2) & 0xFF) << 0x10) | (((temp_v0_8->unk2 * 2) & 0xFF) << 8) | 0x7000000;
-        skyboxCtx->unk_138->words.w1 = ((temp_v0_8->unk6 * 2) & 0xFF) | (((temp_v0_8->unk0 * 2) & 0xFF) << 0x10) | (((temp_v0_8->unk4 * 2) & 0xFF) << 8);
-
-        temp_s2 = phi_s2 + 4;
-        phi_a0_5 = temp_t3;
-        phi_s2 = temp_s2;
-        phi_t5 = temp_t5;
-        if (temp_t5 < 4) {
-            goto loop_21;
-        }
-        temp_v0_9 = sp31E + 1;
-        temp_at = temp_v0_9 < 2;
-        sp31E = temp_v0_9;
-        sp320 = sp40;
-        phi_s2 = temp_s2;
-        if (temp_at != 0) {
-            goto loop_20;
-        }
-        sp31E = 0;
-        sp320 = sp320 - 0x1F;
-        phi_s2_2 = temp_s2;
-loop_24:
-        temp_s3_2 = (sp320 * 4) & 0xFFF;
-        temp_s1_2 = ((sp320 + 0x1F) * 4) & 0xFFF;
-        phi_a0_6 = 0;
-        phi_t5_2 = 0;
-loop_25:
-
-        temp_t3_2 = phi_a0_6 + 0x1F;
-
-        skyboxCtx->unk_138 = skyboxCtx->unk_138 + 8;
-        skyboxCtx->unk_138->words.w0 = 0xFD48007F;
-        skyboxCtx->unk_138->words.w1 = *temp_fp + skyboxCtx->staticSegments;
-
-        temp_a2_6 = (((((phi_a0_6 * 0) + 0x27) >> 3) & 0x1FF) << 9) | 0xF5480000;
-
-        skyboxCtx->unk_138 = skyboxCtx->unk_138 + 8;
-        skyboxCtx->unk_138->words.w0 = temp_a2_6;
-        skyboxCtx->unk_138->words.w1 = 0x7000000;
-
-        temp_a3_3 = ((temp_t3_2 * 4) & 0xFFF) << 0xC;
-
-        skyboxCtx->unk_138 = skyboxCtx->unk_138 + 8;
-        skyboxCtx->unk_138->words.w0 = 0xE6000000;
-        skyboxCtx->unk_138->words.w1 = 0;
-
-        temp_a1_5 = ((phi_a0_6 * 4) & 0xFFF) << 0xC;
-        temp_t1_5 = temp_a3_3 | 0x7000000 | temp_s1_2;
-        temp_t0_5 = temp_a1_5 | 0xF4000000 | temp_s3_2;
-
-        skyboxCtx->unk_138 = skyboxCtx->unk_138 + 8;
-        skyboxCtx->unk_138->words.w0 = temp_t0_5;
-        skyboxCtx->unk_138->words.w1 = temp_t1_5;
-
-        skyboxCtx->unk_138 = skyboxCtx->unk_138 + 8;
-        skyboxCtx->unk_138->words.w0 = 0xE7000000;
-        skyboxCtx->unk_138->words.w1 = 0;
-
-        temp_t2_2 = temp_a1_5 | 0xF2000000 | temp_s3_2;
-
-        skyboxCtx->unk_138 = skyboxCtx->unk_138 + 8;
-        skyboxCtx->unk_138->words.w0 = temp_a2_6;
-        skyboxCtx->unk_138->words.w1 = 0;
-
-        temp_a0_5 = temp_a2_6 | 0x80;
-
-        skyboxCtx->unk_138 = skyboxCtx->unk_138 + 8;
-        skyboxCtx->unk_138->words.w0 = temp_t2_2;
-        skyboxCtx->unk_138->words.w1 = temp_a3_3 | temp_s1_2;
-
-        skyboxCtx->unk_138 = skyboxCtx->unk_138 + 8;
-        skyboxCtx->unk_138->words.w0 = 0xFD48007F;
-        skyboxCtx->unk_138->words.w1 = *temp_fp + skyboxCtx->unk12C;
-
-        skyboxCtx->unk_138 = skyboxCtx->unk_138 + 8;
-        skyboxCtx->unk_138->words.w0 = temp_a0_5;
-        skyboxCtx->unk_138->words.w1 = 0x7000000;
-
-        skyboxCtx->unk_138 = skyboxCtx->unk_138 + 8;
-        skyboxCtx->unk_138->words.w0 = 0xE6000000;
-        skyboxCtx->unk_138->words.w1 = 0;
-
-        skyboxCtx->unk_138 = skyboxCtx->unk_138 + 8;
-        skyboxCtx->unk_138->words.w0 = temp_t0_5;
-        skyboxCtx->unk_138->words.w1 = temp_t1_5;
-
-        skyboxCtx->unk_138 = skyboxCtx->unk_138 + 8;
-        skyboxCtx->unk_138->words.w0 = 0xE7000000;
-        skyboxCtx->unk_138->words.w1 = 0;
-
-        skyboxCtx->unk_138 = skyboxCtx->unk_138 + 8;
-        skyboxCtx->unk_138->words.w0 = temp_a0_5;
-        skyboxCtx->unk_138->words.w1 = 0x1000000;
-
-        skyboxCtx->unk_138 = skyboxCtx->unk_138 + 8;
-        skyboxCtx->unk_138->words.w0 = temp_t2_2;
-        skyboxCtx->unk_138->words.w1 = temp_a3_3 | 0x1000000 | temp_s1_2;
-
-        temp_v0_10 = (phi_s2_2 * 2) + &D_8012AE3C;
-        skyboxCtx->unk_138 = skyboxCtx->unk_138 + 8;
-        skyboxCtx->unk_138->words.w0 = ((temp_v0_10->unk4 * 2) & 0xFF) | (((temp_v0_10->unk0 * 2) & 0xFF) << 0x10) | (((temp_v0_10->unk2 * 2) & 0xFF) << 8) | 0x7000000;
-        phi_s2_2 = phi_s2_2 + 4;
-        skyboxCtx->unk_138->words.w1 = ((temp_v0_10->unk6 * 2) & 0xFF) | (((temp_v0_10->unk0 * 2) & 0xFF) << 0x10) | (((temp_v0_10->unk4 * 2) & 0xFF) << 8);
-
-        phi_a0_6 = temp_t3_2;
-        phi_t5_2 = phi_t5_2 + 1;
-        if (phi_t5_2 < 4) {
-            goto loop_25;
-        }
-        sp31E = sp31E + 1;
-        sp320 = sp320 - 0x1F;
-        if (sp31E < 2) {
-            goto loop_24;
-        }
-    }
-    skyboxCtx->unk_138 = skyboxCtx->unk_138 + 8;
-    skyboxCtx->unk_138->words.w1 = 0;
-    skyboxCtx->unk_138->words.w0 = 0xDF000000;
-    return arg2;
-}
-*/
-
-void func_800AEFC8(SkyboxContext *skyboxCtx, s16 skyboxId) {
-    s32 phi_s1;
-    s32 phi_s2;
-    s32 phi_s3 = 0;
-
-    if (skyboxId == 2 || (skyboxId > 0x10 && skyboxId < 0x19)) {
-        for (phi_s2 = 0, phi_s1 = 0; phi_s1 < 2; phi_s1++, phi_s2 += 2) {
-            phi_s3 = func_800ADBB0(skyboxCtx, skyboxCtx->roomVtx, phi_s3, 
-                    D_8012AEBC[phi_s1].unk_0, D_8012AEBC[phi_s1].unk_4,
-                    D_8012AEBC[phi_s1].unk_8, D_8012AEBC[phi_s1].unk_C, D_8012AEBC[phi_s1].unk_10, 
-                    phi_s1, phi_s2);
-        }
-    } else if (skyboxCtx->unk_140 == 2) {
-        for (phi_s2 = 0, phi_s1 = 0; phi_s1 < 3; phi_s1++, phi_s2 += 2) {
-            phi_s3 = func_800ADBB0(skyboxCtx, skyboxCtx->roomVtx, phi_s3, 
-                    D_8012AEBC[phi_s1].unk_0, D_8012AEBC[phi_s1].unk_4,
-                    D_8012AEBC[phi_s1].unk_8, D_8012AEBC[phi_s1].unk_C, D_8012AEBC[phi_s1].unk_10, 
-                    phi_s1, phi_s2);
-        }
-    } else {
-        for (phi_s2 = 0, phi_s1 = 0; phi_s1 < 4; phi_s1++, phi_s2 += 2) {
-            phi_s3 = func_800ADBB0(skyboxCtx, skyboxCtx->roomVtx, phi_s3, 
-                    D_8012AEBC[phi_s1].unk_0, D_8012AEBC[phi_s1].unk_4,
-                    D_8012AEBC[phi_s1].unk_8, D_8012AEBC[phi_s1].unk_C, D_8012AEBC[phi_s1].unk_10, 
-                    phi_s1, phi_s2);
-        }
-    }
-}
-
-void func_800AF178(SkyboxContext *skyboxCtx, s32 arg1) {
-    s32 phi_s2 = 0;
-    s32 phi_s1;
-
-    for (phi_s1 = 0; phi_s1 < arg1; phi_s1++) {
-        phi_s2 = func_800AE2C0(skyboxCtx, skyboxCtx->roomVtx, phi_s2, 
-                D_8012AF0C[phi_s1].unk_0, D_8012AF0C[phi_s1].unk_4, 
-                D_8012AF0C[phi_s1].unk_8, D_8012AF0C[phi_s1].unk_C, D_8012AF0C[phi_s1].unk_10, phi_s1);
-    }
-}
-
+// Kankyo data
 typedef struct {
     /* 0x00 */ u16 unk_0; // start
     /* 0x02 */ u16 unk_2; // end
@@ -1111,8 +84,6 @@ typedef struct {
     /* 0x07 */ char unk_7[0x1];
 } Struct_8011FC1C; // size = 0x8
 
-extern Struct_8011FC1C D_8011FC1C[8][9];
-
 typedef struct {
     /* 0x00 */ u32 unk_0; // start
     /* 0x04 */ u32 unk_4; // end
@@ -1120,7 +91,63 @@ typedef struct {
     /* 0x0C */ u32 unk_C; // pal end
 } Struct_8011FD3C; // size = 0x10
 
+extern Struct_8011FC1C D_8011FC1C[8][9];
 extern Struct_8011FD3C D_8011FD3C[];
+
+s32 func_800ADBB0(SkyboxContext *skyboxCtx, Vtx *roomVtx, s32, UNK_TYPE, UNK_TYPE, UNK_TYPE, UNK_TYPE, UNK_TYPE, s32, s32);
+#pragma GLOBAL_ASM("asm/non_matchings/code/z_vr_box/func_800ADBB0.s")
+
+s32 func_800AE2C0(SkyboxContext *skyboxCtx, Vtx *roomVtx, s32, UNK_TYPE, UNK_TYPE, UNK_TYPE, UNK_TYPE, UNK_TYPE, s32);
+#pragma GLOBAL_ASM("asm/non_matchings/code/z_vr_box/func_800AE2C0.s")
+
+// Used for prerenders, has only 4 sides
+void func_800AEFC8(SkyboxContext* skyboxCtx, s16 skyboxId) {
+    static SkyCubeInfo D_8012AEBC[] = {
+        { -126, 124, -126, 63, -31 },
+        { 126, 124, -126, 63, -31 },
+        { 126, 124, 126, -63, -31 },
+        { -126, 124, 126, -63, -31 },
+    };
+    s32 phi_s1;
+    s32 phi_s2;
+    s32 phi_s3 = 0;
+
+    if (skyboxId == 2 || (skyboxId > 16 && skyboxId < 25)) {
+        for (phi_s2 = 0, phi_s1 = 0; phi_s1 < 2; phi_s1++, phi_s2 += 2) {
+            phi_s3 = func_800ADBB0(skyboxCtx, skyboxCtx->roomVtx, phi_s3, D_8012AEBC[phi_s1].x,
+                                   D_8012AEBC[phi_s1].y, D_8012AEBC[phi_s1].z, D_8012AEBC[phi_s1].width,
+                                   D_8012AEBC[phi_s1].height, phi_s1, phi_s2);
+        }
+    } else if (skyboxCtx->unk_140 == 2) {
+        for (phi_s2 = 0, phi_s1 = 0; phi_s1 < 3; phi_s1++, phi_s2 += 2) {
+            phi_s3 = func_800ADBB0(skyboxCtx, skyboxCtx->roomVtx, phi_s3, D_8012AEBC[phi_s1].x,
+                                   D_8012AEBC[phi_s1].y, D_8012AEBC[phi_s1].z, D_8012AEBC[phi_s1].width,
+                                   D_8012AEBC[phi_s1].height, phi_s1, phi_s2);
+        }
+    } else {
+        for (phi_s2 = 0, phi_s1 = 0; phi_s1 < 4; phi_s1++, phi_s2 += 2) {
+            phi_s3 = func_800ADBB0(skyboxCtx, skyboxCtx->roomVtx, phi_s3, D_8012AEBC[phi_s1].x,
+                                   D_8012AEBC[phi_s1].y, D_8012AEBC[phi_s1].z, D_8012AEBC[phi_s1].width,
+                                   D_8012AEBC[phi_s1].height, phi_s1, phi_s2);
+        }
+    }
+}
+
+// Used for skyboxes, has 6 sides
+void func_800AF178(SkyboxContext* skyboxCtx, s32 arg1) {
+    static SkyCubeInfo D_8012AF0C[] = {
+        { -64, 64, -64, 32, -32 }, { 64, 64, 64, -32, -32 }, { -64, 64, 64, -32, -32 },
+        { 64, 64, -64, 32, -32 },  { -64, 64, 64, 32, -32 }, { -64, -64, -64, 32, 32 },
+    };
+    s32 phi_s2 = 0;
+    s32 i;
+
+    for (i = 0; i < arg1; i++) {
+        phi_s2 =
+            func_800AE2C0(skyboxCtx, skyboxCtx->roomVtx, phi_s2, D_8012AF0C[i].x, D_8012AF0C[i].y,
+                          D_8012AF0C[i].z, D_8012AF0C[i].width, D_8012AF0C[i].height, i);
+    }
+}
 
 #ifdef NON_MATCHING
 // Some reoderings at the end of the first case, some regalloc, stack
