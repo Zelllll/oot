@@ -1,4 +1,7 @@
 .rdata
+glabel D_80142C00
+    .asciz "\n\n\n＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊\n\n\nＴＹＰＥ＝%d\n\n\n＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊\n\n\n"
+
 glabel D_80142C6C
     .asciz "\x1b[32m"
     .balign 4

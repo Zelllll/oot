@@ -889,50 +889,47 @@ glabel D_80142BF0
     .asciz "../z_vr_box.c"
     .balign 4
 
-glabel D_80142C00
-    .asciz "\n\n\n＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊\n\n\nＴＹＰＥ＝%d\n\n\n＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊\n\n\n"
-
 .late_rodata
 glabel jtbl_80142DC0
-    .word L800AF25C
-    .word L800AF658
-    .word L800AF750
-    .word L800AF8B8
-    .word L800AF9B8
-    .word L800B0E3C
-    .word L800AFB3C
-    .word L800B0E3C
-    .word L800AFC2C
-    .word L800AFD1C
-    .word L800AFE1C
-    .word L800AFF14
-    .word L800B0E3C
-    .word L800B0004
-    .word L800B00F4
-    .word L800B01E4
-    .word L800B02D4
-    .word L800B0E3C
-    .word L800B03CC
-    .word L800B04C4
-    .word L800B0E3C
-    .word L800B05BC
-    .word L800B06B4
-    .word L800B07AC
-    .word L800B0E3C
-    .word L800B08A4
-    .word L800B0994
-    .word L800B0A84
-    .word L800B0E3C
-    .word L800B0E3C
-    .word L800B0E3C
-    .word L800B0B74
-    .word L800B0C64
-    .word L800B0D54
-    .word L800B0E3C
-    .word L800B0E3C
-    .word L800B0E3C
-    .word L800B0E3C
-    .word L800B0E3C
+    .word L800AF25C     # case 1
+    .word L800AF658     # case 2
+    .word L800AF750     # case 3
+    .word L800AF8B8     # case 4
+    .word L800AF9B8     # case 5
+    .word L800B0E3C     # case 6
+    .word L800AFB3C     # case 7
+    .word L800B0E3C     # case 8
+    .word L800AFC2C     # case 9
+    .word L800AFD1C     # case 10
+    .word L800AFE1C     # case 11
+    .word L800AFF14     # case 12
+    .word L800B0E3C     # case 13
+    .word L800B0004     # case 14
+    .word L800B00F4     # case 15
+    .word L800B01E4     # case 16
+    .word L800B02D4     # case 17
+    .word L800B0E3C     # case 18
+    .word L800B03CC     # case 19
+    .word L800B04C4     # case 20
+    .word L800B0E3C     # case 21
+    .word L800B05BC     # case 22
+    .word L800B06B4     # case 23
+    .word L800B07AC     # case 24
+    .word L800B0E3C     # case 25
+    .word L800B08A4     # case 26
+    .word L800B0994     # case 27
+    .word L800B0A84     # case 28
+    .word L800B0E3C     # case 29
+    .word L800B0E3C     # case 30
+    .word L800B0E3C     # case 31
+    .word L800B0B74     # case 32
+    .word L800B0C64     # case 33
+    .word L800B0D54     # case 34
+    .word L800B0E3C     # case 35
+    .word L800B0E3C     # case 36
+    .word L800B0E3C     # case 37
+    .word L800B0E3C     # case 38
+    .word L800B0E3C     # case 39
 
 glabel D_80142E5C
     .float 0.8

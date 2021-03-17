@@ -291,7 +291,7 @@ typedef struct {
     /* 0x128 */ void* staticSegments[3];
     /* 0x134 */ Gfx* dpList;
     /* 0x138 */ Gfx* unk_138;
-    /* 0x13C */ void* roomVtx;
+    /* 0x13C */ Vtx* roomVtx;
     /* 0x140 */ s16  unk_140;
     /* 0x144 */ Vec3f rot;
 } SkyboxContext; // size = 0x150
@@ -498,7 +498,9 @@ typedef struct {
     /* 0x00 */ char     unk_00[0x02];
     /* 0x02 */ u16      unk_02;
     /* 0x04 */ Vec3f    unk_04;
-    /* 0x10 */ char     unk_10[0x03];
+    /* 0x10 */ u8       unk_10;
+    /* 0x11 */ u8       unk_11;
+    /* 0x12 */ char     unk_12;
     /* 0x13 */ u8       unk_13;
     /* 0x14 */ char     unk_14[0x01];
     /* 0x15 */ u8       skyDisabled;
