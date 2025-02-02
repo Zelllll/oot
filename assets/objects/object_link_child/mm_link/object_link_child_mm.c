@@ -120,6 +120,7 @@ u64 object_link_child_Tex_006B00[] = {
 #include "assets/objects/object_link_child/mm_link/tex_006B00.rgba16.inc.c"
 };
 
+#if 0
 u8 object_link_child_unaccounted_006D00[] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
@@ -282,6 +283,7 @@ u8 object_link_child_unaccounted_006D00[] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
 };
+#endif
 
 u64 object_link_child_Tex_007700[] = {
 #include "assets/objects/object_link_child/mm_link/tex_007700.rgba16.inc.c"
@@ -890,6 +892,7 @@ Gfx gLinkHumanHatDL[] = {
     gsSPEndDisplayList(),
 };
 
+#if 0
 Gfx gLinkHumanSwordScabbardDL[] = {
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPPipeSync(),
@@ -922,6 +925,7 @@ Gfx gLinkHumanSwordScabbardDL[] = {
     gsSP1Triangle(7, 9, 21, 0),
     gsSPEndDisplayList(),
 };
+#endif
 
 Gfx gLinkHumanRightShoulderDL[] = {
     gsSPMatrix(0x0D000440, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW),
@@ -1342,6 +1346,7 @@ Vtx object_link_childVtx_00E858[] = {
 #include "assets/objects/object_link_child/mm_link/object_link_childVtx_00E858.vtx.inc"
 };
 
+#if 0
 Gfx gLinkHumanRightHandHoldingOcarinaDL[] = {
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_RGBA16),
@@ -2915,8 +2920,6 @@ Vtx object_link_childVtx_01D840[] = {
 #include "assets/objects/object_link_child/mm_link/object_link_childVtx_01D840.vtx.inc"
 };
 
-// @TODO: Zel
-#if 0
 Gfx object_link_child_DL_01D960[] = {
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPPipeSync(),
@@ -3094,7 +3097,6 @@ Gfx object_link_child_DL_01DD28[] = {
     gsSPDisplayList(gLinkHumanRightHandClosedDL),
     gsSPBranchList(gLinkHumanBowDL),
 };
-#endif
 
 Vtx object_link_childVtx_01DD38[] = {
 #include "assets/objects/object_link_child/mm_link/object_link_childVtx_01DD38.vtx.inc"
@@ -3128,6 +3130,7 @@ Gfx gLinkHumanLeftHandHoldBottleDL[] = {
     gsSP1Triangle(6, 7, 8, 0),
     gsSPEndDisplayList(),
 };
+#endif
 
 LodLimb gLinkHumanRootLimb = { 
     { 0, 2376, 0 }, LINK_HUMAN_LIMB_WAIST - 1, LIMB_DONE,
