@@ -1014,6 +1014,7 @@ beginseg
     compress
     romalign 0x1000
     include "$(BUILD_DIR)/assets/objects/object_link_child/object_link_child.o"
+    include "$(BUILD_DIR)/assets/objects/object_link_child/mm_link/object_link_child_mm.o"
     number 6
 endseg
 
