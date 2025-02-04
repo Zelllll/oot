@@ -6,39 +6,39 @@
 #include "assets/objects/gameplay_keep/gameplay_keep.h"
 
 u64 gLinkChildNoseTex[] = {
-#include "assets/objects/object_link_child/nose.ci8.inc.c"
+#include "assets/objects/object_link_child/oot_link/nose.ci8.inc.c"
 };
 
 u64 gLinkChildEarTex[] = {
-#include "assets/objects/object_link_child/ear.ci8.inc.c"
+#include "assets/objects/object_link_child/oot_link/ear.ci8.inc.c"
 };
 
 u64 gLinkChildBeltTLUT[] = {
-#include "assets/objects/object_link_child/belt_tlut.rgba16.inc.c"
+#include "assets/objects/object_link_child/oot_link/belt_tlut.rgba16.inc.c"
 };
 
 u64 gLinkChildSkinTLUT[] = {
-#include "assets/objects/object_link_child/skin_tlut.rgba16.inc.c"
+#include "assets/objects/object_link_child/oot_link/skin_tlut.rgba16.inc.c"
 };
 
 u64 gLinkChildLowerBootTex[] = {
-#include "assets/objects/object_link_child/lower_boot.ci8.inc.c"
+#include "assets/objects/object_link_child/oot_link/lower_boot.ci8.inc.c"
 };
 
 u64 gLinkChildBootTex[] = {
-#include "assets/objects/object_link_child/boot.ci8.inc.c"
+#include "assets/objects/object_link_child/oot_link/boot.ci8.inc.c"
 };
 
 u64 gLinkChildWaistTex[] = {
-#include "assets/objects/object_link_child/waist.i8.inc.c"
+#include "assets/objects/object_link_child/oot_link/waist.i8.inc.c"
 };
 
 u64 gLinkChildBeltTex[] = {
-#include "assets/objects/object_link_child/belt.ci8.inc.c"
+#include "assets/objects/object_link_child/oot_link/belt.ci8.inc.c"
 };
 
 u64 gLinkChildBeltClaspTex[] = {
-#include "assets/objects/object_link_child/belt_clasp.ci8.inc.c"
+#include "assets/objects/object_link_child/oot_link/belt_clasp.ci8.inc.c"
 };
 
 Vtx object_link_childVtx_01F528[] = {
