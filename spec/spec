@@ -1013,8 +1013,16 @@ beginseg
     name "object_link_child"
     compress
     romalign 0x1000
-    include "$(BUILD_DIR)/assets/objects/object_link_child/object_link_child.o"
+    include "$(BUILD_DIR)/assets/objects/object_link_child/common/link_child_eye_mouth_textures.o"
+    include "$(BUILD_DIR)/assets/objects/object_link_child/common/link_child_equippable_masks_model.o"
+   
     include "$(BUILD_DIR)/assets/objects/object_link_child/mm_link/object_link_child_mm.o"
+
+    include "$(BUILD_DIR)/assets/objects/object_link_child/oot_link/link_child_oot_skel.o"
+    include "$(BUILD_DIR)/assets/objects/object_link_child/oot_link/link_child_slingshot_string_model.o"
+
+ include "$(BUILD_DIR)/assets/objects/object_link_child/object_link_child.o"
+
     number 6
 endseg
 

@@ -13,6 +13,9 @@ SHELL = /usr/bin/env bash
 
 -include .make_options.mk
 
+# Determines if Child Link use the MM model
+USE_MM_CHILD_LINK ?= 1
+
 # If COMPARE is 1, check the output md5sum after building. Set to 0 when modding.
 COMPARE ?= 1
 # If NON_MATCHING is 1, define the NON_MATCHING C flag when building. Set to 1 when modding.
@@ -193,6 +196,11 @@ endif
 
 ifeq ($(NON_MATCHING),1)
   CPP_DEFINES += -DNON_MATCHING -DAVOID_UB
+  COMPARE := 0
+endif
+
+ifeq ($(USE_MM_CHILD_LINK),1)
+  CPP_DEFINES += -DUSE_MM_CHILD_LINK
   COMPARE := 0
 endif
 
