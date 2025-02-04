@@ -1,22 +1,22 @@
 #include "ultra64.h"
 #include "z64.h"
 #include "macros.h"
-#include "object_link_child_mm.h"
+#include "../object_link_child_mm.h"
 #include "assets/misc/link_animetion/link_animetion.h"
 #include "assets/objects/gameplay_keep/gameplay_keep.h"
 
 // @TODO: Zel
 #if 1
-Gfx gLinkHumanSheathedKokiriSwordDL[] = {
+Gfx gLinkChildSheathedKokiriSwordDL[] = {
     gsSPEndDisplayList(),
 };
 #endif
 
-u64 gLinkHumanSkinTLUT[] = {
+u64 gLinkChildSkinTLUT[] = {
 #include "assets/objects/object_link_child/mm_link/skin_tlut.rgba16.inc.c"
 };
 
-u64 gLinkHumanMouthTLUT[] = {
+u64 gLinkChildMouthTLUT[] = {
 #include "assets/objects/object_link_child/mm_link/mouth_tlut.rgba16.inc.c"
 };
 
@@ -32,15 +32,15 @@ u64 object_link_child_Tex_005540[] = {
 #include "assets/objects/object_link_child/mm_link/tex_005540.ci8.inc.c"
 };
 
-u64 gLinkHumanEarTex[] = {
+u64 gLinkChildEarTex[] = {
 #include "assets/objects/object_link_child/mm_link/ear.ci8.inc.c"
 };
 
-u64 gLinkHumanBeltClaspTex[] = {
+u64 gLinkChildBeltClaspTex[] = {
 #include "assets/objects/object_link_child/mm_link/belt_clasp.rgba16.inc.c"
 };
 
-u64 gLinkHumanBeltTex[] = {
+u64 gLinkChildBeltTex[] = {
 #include "assets/objects/object_link_child/mm_link/belt.rgba16.inc.c"
 };
 
@@ -80,7 +80,7 @@ Vtx object_link_childVtx_007900[] = {
 #include "assets/objects/object_link_child/mm_link/object_link_childVtx_007900.vtx.inc"
 };
 
-Gfx gLinkHumanRightThighDL[] = {
+Gfx gLinkChildRightThighDL[] = {
     gsSPMatrix(0x0D000000, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_FOG | G_LIGHTING | G_SHADING_SMOOTH),
@@ -113,7 +113,7 @@ Gfx gLinkHumanRightThighDL[] = {
     gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, TEXEL0, PRIMITIVE, 0, COMBINED, 0, 0, 0, 0, COMBINED),
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_RGBA16),
-    gsDPLoadTLUT_pal256(gLinkHumanSkinTLUT),
+    gsDPLoadTLUT_pal256(gLinkChildSkinTLUT),
     gsDPLoadTextureBlock(object_link_child_Tex_005500, G_IM_FMT_CI, G_IM_SIZ_8b, 8, 8, 0, G_TX_MIRROR | G_TX_CLAMP,
                          G_TX_MIRROR | G_TX_CLAMP, 3, 3, G_TX_NOLOD, G_TX_NOLOD),
     gsDPSetPrimColor(0, 0x80, 255, 255, 255, 255),
@@ -127,7 +127,7 @@ Gfx gLinkHumanRightThighDL[] = {
     gsSPEndDisplayList(),
 };
 
-Gfx gLinkHumanRightShinDL[] = {
+Gfx gLinkChildRightShinDL[] = {
     gsSPMatrix(0x0D000040, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_FOG | G_LIGHTING | G_SHADING_SMOOTH),
@@ -138,7 +138,7 @@ Gfx gLinkHumanRightShinDL[] = {
     gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_RGBA16),
-    gsDPLoadTLUT_pal256(gLinkHumanSkinTLUT),
+    gsDPLoadTLUT_pal256(gLinkChildSkinTLUT),
     gsDPLoadTextureBlock(object_link_child_Tex_005500, G_IM_FMT_CI, G_IM_SIZ_8b, 8, 8, 0, G_TX_MIRROR | G_TX_CLAMP,
                          G_TX_MIRROR | G_TX_CLAMP, 3, 3, G_TX_NOLOD, G_TX_NOLOD),
     gsDPSetPrimColor(0, 0x80, 255, 255, 255, 255),
@@ -165,7 +165,7 @@ Gfx gLinkHumanRightShinDL[] = {
     gsSP2Triangles(7, 13, 1, 0, 14, 1, 13, 0),
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_RGBA16),
-    gsDPLoadTLUT_pal256(gLinkHumanSkinTLUT),
+    gsDPLoadTLUT_pal256(gLinkChildSkinTLUT),
     gsDPLoadTextureBlock(object_link_child_Tex_005500, G_IM_FMT_CI, G_IM_SIZ_8b, 8, 8, 0, G_TX_MIRROR | G_TX_CLAMP,
                          G_TX_MIRROR | G_TX_CLAMP, 3, 3, G_TX_NOLOD, G_TX_NOLOD),
     gsSPVertex(&object_link_childVtx_007900[70], 10, 0),
@@ -177,7 +177,7 @@ Gfx gLinkHumanRightShinDL[] = {
     gsSPEndDisplayList(),
 };
 
-Gfx gLinkHumanRightFootDL[] = {
+Gfx gLinkChildRightFootDL[] = {
     gsSPMatrix(0x0D000080, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_FOG | G_LIGHTING | G_SHADING_SMOOTH),
@@ -209,7 +209,7 @@ Gfx gLinkHumanRightFootDL[] = {
     gsSPEndDisplayList(),
 };
 
-Gfx gLinkHumanLeftThighDL[] = {
+Gfx gLinkChildLeftThighDL[] = {
     gsSPMatrix(0x0D000000, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_FOG | G_LIGHTING | G_SHADING_SMOOTH),
@@ -242,7 +242,7 @@ Gfx gLinkHumanLeftThighDL[] = {
     gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, TEXEL0, PRIMITIVE, 0, COMBINED, 0, 0, 0, 0, COMBINED),
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_RGBA16),
-    gsDPLoadTLUT_pal256(gLinkHumanSkinTLUT),
+    gsDPLoadTLUT_pal256(gLinkChildSkinTLUT),
     gsDPLoadTextureBlock(object_link_child_Tex_005500, G_IM_FMT_CI, G_IM_SIZ_8b, 8, 8, 0, G_TX_MIRROR | G_TX_CLAMP,
                          G_TX_MIRROR | G_TX_CLAMP, 3, 3, G_TX_NOLOD, G_TX_NOLOD),
     gsDPSetPrimColor(0, 0x80, 255, 255, 255, 255),
@@ -256,7 +256,7 @@ Gfx gLinkHumanLeftThighDL[] = {
     gsSPEndDisplayList(),
 };
 
-Gfx gLinkHumanLeftShinDL[] = {
+Gfx gLinkChildLeftShinDL[] = {
     gsSPMatrix(0x0D000100, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_FOG | G_LIGHTING | G_SHADING_SMOOTH),
@@ -267,7 +267,7 @@ Gfx gLinkHumanLeftShinDL[] = {
     gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_RGBA16),
-    gsDPLoadTLUT_pal256(gLinkHumanSkinTLUT),
+    gsDPLoadTLUT_pal256(gLinkChildSkinTLUT),
     gsDPLoadTextureBlock(object_link_child_Tex_005500, G_IM_FMT_CI, G_IM_SIZ_8b, 8, 8, 0, G_TX_MIRROR | G_TX_CLAMP,
                          G_TX_MIRROR | G_TX_CLAMP, 3, 3, G_TX_NOLOD, G_TX_NOLOD),
     gsDPSetPrimColor(0, 0x80, 255, 255, 255, 255),
@@ -294,7 +294,7 @@ Gfx gLinkHumanLeftShinDL[] = {
     gsSP2Triangles(1, 13, 7, 0, 13, 1, 14, 0),
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_RGBA16),
-    gsDPLoadTLUT_pal256(gLinkHumanSkinTLUT),
+    gsDPLoadTLUT_pal256(gLinkChildSkinTLUT),
     gsDPLoadTextureBlock(object_link_child_Tex_005500, G_IM_FMT_CI, G_IM_SIZ_8b, 8, 8, 0, G_TX_MIRROR | G_TX_CLAMP,
                          G_TX_MIRROR | G_TX_CLAMP, 3, 3, G_TX_NOLOD, G_TX_NOLOD),
     gsSPVertex(&object_link_childVtx_007900[200], 10, 0),
@@ -306,7 +306,7 @@ Gfx gLinkHumanLeftShinDL[] = {
     gsSPEndDisplayList(),
 };
 
-Gfx gLinkHumanLeftFootDL[] = {
+Gfx gLinkChildLeftFootDL[] = {
     gsSPMatrix(0x0D000140, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_FOG | G_LIGHTING | G_SHADING_SMOOTH),
@@ -338,7 +338,7 @@ Gfx gLinkHumanLeftFootDL[] = {
     gsSPEndDisplayList(),
 };
 
-Gfx gLinkHumanWaistDL[] = {
+Gfx gLinkChildWaistNearDL[] = {
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPPipeSync(),
     gsDPSetCombineLERP(TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, TEXEL0, COMBINED, 0, SHADE, 0, 0, 0, 0, COMBINED),
@@ -366,7 +366,7 @@ Gfx gLinkHumanWaistDL[] = {
     gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, TEXEL0, PRIMITIVE, 0, COMBINED, 0, 0, 0, 0, COMBINED),
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_NONE),
-    gsDPLoadTextureBlock(gLinkHumanBeltClaspTex, G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, 16, 0, G_TX_MIRROR | G_TX_CLAMP,
+    gsDPLoadTextureBlock(gLinkChildBeltClaspTex, G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, 16, 0, G_TX_MIRROR | G_TX_CLAMP,
                          G_TX_MIRROR | G_TX_CLAMP, 5, 4, G_TX_NOLOD, G_TX_NOLOD),
     gsDPSetPrimColor(0, 0x80, 255, 255, 255, 255),
     gsSPVertex(&object_link_childVtx_007900[283], 7, 0),
@@ -375,7 +375,7 @@ Gfx gLinkHumanWaistDL[] = {
     gsSP1Triangle(4, 6, 5, 0),
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_NONE),
-    gsDPLoadTextureBlock(gLinkHumanBeltTex, G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 16, 0, G_TX_MIRROR | G_TX_CLAMP, G_TX_MIRROR
+    gsDPLoadTextureBlock(gLinkChildBeltTex, G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 16, 0, G_TX_MIRROR | G_TX_CLAMP, G_TX_MIRROR
                          | G_TX_CLAMP, 3, 4, G_TX_NOLOD, G_TX_NOLOD),
     gsSPVertex(&object_link_childVtx_007900[290], 10, 0),
     gsSP2Triangles(0, 1, 2, 0, 2, 3, 0, 0),
@@ -385,7 +385,7 @@ Gfx gLinkHumanWaistDL[] = {
     gsSPEndDisplayList(),
 };
 
-Gfx gLinkHumanCollarDL[] = {
+Gfx gLinkChildCollarDL[] = {
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPPipeSync(),
     gsDPSetCombineLERP(TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, TEXEL0, COMBINED, 0, SHADE, 0, 0, 0, 0, COMBINED),
@@ -407,7 +407,7 @@ Gfx gLinkHumanCollarDL[] = {
     gsSPEndDisplayList(),
 };
 
-Gfx gLinkHumanTorsoDL[] = {
+Gfx gLinkChildTorsoDL[] = {
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPPipeSync(),
     gsDPSetCombineLERP(TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, TEXEL0, COMBINED, 0, SHADE, 0, 0, 0, 0, COMBINED),
@@ -450,7 +450,7 @@ Gfx gLinkHumanTorsoDL[] = {
     gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, TEXEL0, PRIMITIVE, 0, COMBINED, 0, 0, 0, 0, COMBINED),
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_RGBA16),
-    gsDPLoadTLUT_pal256(gLinkHumanSkinTLUT),
+    gsDPLoadTLUT_pal256(gLinkChildSkinTLUT),
     gsDPLoadTextureBlock(object_link_child_Tex_005500, G_IM_FMT_CI, G_IM_SIZ_8b, 8, 8, 0, G_TX_MIRROR | G_TX_CLAMP,
                          G_TX_MIRROR | G_TX_CLAMP, 3, 3, G_TX_NOLOD, G_TX_NOLOD),
     gsDPSetPrimColor(0, 0x80, 255, 255, 255, 255),
@@ -462,7 +462,7 @@ Gfx gLinkHumanTorsoDL[] = {
     gsSP2Triangles(7, 13, 12, 0, 8, 13, 7, 0),
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_NONE),
-    gsDPLoadTextureBlock(gLinkHumanBeltClaspTex, G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, 16, 0, G_TX_MIRROR | G_TX_CLAMP,
+    gsDPLoadTextureBlock(gLinkChildBeltClaspTex, G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, 16, 0, G_TX_MIRROR | G_TX_CLAMP,
                          G_TX_MIRROR | G_TX_CLAMP, 5, 4, G_TX_NOLOD, G_TX_NOLOD),
     gsSPVertex(&object_link_childVtx_007900[882], 5, 0),
     gsSP2Triangles(0, 1, 2, 0, 1, 3, 2, 0),
@@ -476,7 +476,7 @@ Gfx gLinkHumanTorsoDL[] = {
     gsSP2Triangles(4, 5, 6, 0, 7, 5, 4, 0),
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_NONE),
-    gsDPLoadTextureBlock(gLinkHumanBeltTex, G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 16, 0, G_TX_MIRROR | G_TX_CLAMP, G_TX_MIRROR
+    gsDPLoadTextureBlock(gLinkChildBeltTex, G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 16, 0, G_TX_MIRROR | G_TX_CLAMP, G_TX_MIRROR
                          | G_TX_CLAMP, 3, 4, G_TX_NOLOD, G_TX_NOLOD),
     gsSPVertex(&object_link_childVtx_007900[895], 32, 0),
     gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
@@ -496,7 +496,7 @@ Gfx gLinkHumanTorsoDL[] = {
     gsSPEndDisplayList(),
 };
 
-Gfx gLinkHumanHeadDL[] = {
+Gfx gLinkChildHeadDL[] = {
     gsSPMatrix(0x0D000440, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_FOG | G_LIGHTING | G_SHADING_SMOOTH),
@@ -507,7 +507,7 @@ Gfx gLinkHumanHeadDL[] = {
     gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_RGBA16),
-    gsDPLoadTLUT_pal256(gLinkHumanSkinTLUT),
+    gsDPLoadTLUT_pal256(gLinkChildSkinTLUT),
     gsDPLoadTextureBlock(object_link_child_Tex_005500, G_IM_FMT_CI, G_IM_SIZ_8b, 8, 8, 0, G_TX_MIRROR | G_TX_CLAMP,
                          G_TX_MIRROR | G_TX_CLAMP, 3, 3, G_TX_NOLOD, G_TX_NOLOD),
     gsDPSetPrimColor(0, 0x80, 255, 255, 255, 255),
@@ -520,7 +520,7 @@ Gfx gLinkHumanHeadDL[] = {
     gsDPPipeSync(),
     gsDPSetPrimColor(0, 0xFF, 255, 255, 255, 255),
     gsDPSetTextureLUT(G_TT_RGBA16),
-    gsDPLoadTLUT_pal256(gLinkHumanSkinTLUT),
+    gsDPLoadTLUT_pal256(gLinkChildSkinTLUT),
     gsDPLoadTextureBlock(0x08000000, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR |
                          G_TX_CLAMP, 6, 5, G_TX_NOLOD, G_TX_NOLOD),
     gsSPVertex(&object_link_childVtx_007900[360], 19, 0),
@@ -537,7 +537,7 @@ Gfx gLinkHumanHeadDL[] = {
     gsSP2Triangles(17, 11, 18, 0, 8, 4, 12, 0),
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_RGBA16),
-    gsDPLoadTLUT_pal256(gLinkHumanMouthTLUT),
+    gsDPLoadTLUT_pal256(gLinkChildMouthTLUT),
     gsDPLoadTextureBlock(0x09000000, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 32, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR |
                          G_TX_CLAMP, 5, 5, G_TX_NOLOD, G_TX_NOLOD),
     gsSPVertex(&object_link_childVtx_007900[379], 8, 0),
@@ -571,7 +571,7 @@ Gfx gLinkHumanHeadDL[] = {
     gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, TEXEL0, PRIMITIVE, 0, COMBINED, 0, 0, 0, 0, COMBINED),
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_RGBA16),
-    gsDPLoadTLUT_pal256(gLinkHumanSkinTLUT),
+    gsDPLoadTLUT_pal256(gLinkChildSkinTLUT),
     gsDPLoadTextureBlock(object_link_child_Tex_005500, G_IM_FMT_CI, G_IM_SIZ_8b, 8, 8, 0, G_TX_MIRROR | G_TX_CLAMP,
                          G_TX_MIRROR | G_TX_CLAMP, 3, 3, G_TX_NOLOD, G_TX_NOLOD),
     gsDPSetPrimColor(0, 0x80, 255, 255, 255, 255),
@@ -628,15 +628,15 @@ Gfx gLinkHumanHeadDL[] = {
     gsSP1Triangle(25, 26, 18, 0),
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_RGBA16),
-    gsDPLoadTLUT_pal256(gLinkHumanSkinTLUT),
+    gsDPLoadTLUT_pal256(gLinkChildSkinTLUT),
     gsDPLoadTextureBlock(object_link_child_Tex_005540, G_IM_FMT_CI, G_IM_SIZ_8b, 16, 16, 0, G_TX_MIRROR | G_TX_CLAMP,
                          G_TX_MIRROR | G_TX_CLAMP, 4, 4, G_TX_NOLOD, G_TX_NOLOD),
     gsSPVertex(&object_link_childVtx_007900[538], 3, 0),
     gsSP1Triangle(0, 1, 2, 0),
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_RGBA16),
-    gsDPLoadTLUT_pal256(gLinkHumanSkinTLUT),
-    gsDPLoadTextureBlock(gLinkHumanEarTex, G_IM_FMT_CI, G_IM_SIZ_8b, 16, 16, 0, G_TX_MIRROR | G_TX_CLAMP, G_TX_MIRROR |
+    gsDPLoadTLUT_pal256(gLinkChildSkinTLUT),
+    gsDPLoadTextureBlock(gLinkChildEarTex, G_IM_FMT_CI, G_IM_SIZ_8b, 16, 16, 0, G_TX_MIRROR | G_TX_CLAMP, G_TX_MIRROR |
                          G_TX_CLAMP, 4, 4, G_TX_NOLOD, G_TX_NOLOD),
     gsSPVertex(&object_link_childVtx_007900[541], 10, 0),
     gsSP2Triangles(0, 1, 2, 0, 3, 0, 2, 0),
@@ -645,7 +645,7 @@ Gfx gLinkHumanHeadDL[] = {
     gsSPEndDisplayList(),
 };
 
-Gfx gLinkHumanHatDL[] = {
+Gfx gLinkChildHatDL[] = {
     gsSPMatrix(0x0D0001C0, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_FOG | G_LIGHTING | G_SHADING_SMOOTH),
@@ -679,7 +679,7 @@ Gfx gLinkHumanHatDL[] = {
     gsSPEndDisplayList(),
 };
 
-Gfx gLinkHumanRightShoulderDL[] = {
+Gfx gLinkChildRightShoulderNearDL[] = {
     gsSPMatrix(0x0D000440, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_FOG | G_LIGHTING | G_SHADING_SMOOTH),
@@ -708,7 +708,7 @@ Gfx gLinkHumanRightShoulderDL[] = {
     gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, TEXEL0, PRIMITIVE, 0, COMBINED, 0, 0, 0, 0, COMBINED),
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_RGBA16),
-    gsDPLoadTLUT_pal256(gLinkHumanSkinTLUT),
+    gsDPLoadTLUT_pal256(gLinkChildSkinTLUT),
     gsDPLoadTextureBlock(object_link_child_Tex_005500, G_IM_FMT_CI, G_IM_SIZ_8b, 8, 8, 0, G_TX_MIRROR | G_TX_CLAMP,
                          G_TX_MIRROR | G_TX_CLAMP, 3, 3, G_TX_NOLOD, G_TX_NOLOD),
     gsDPSetPrimColor(0, 0x80, 255, 255, 255, 255),
@@ -731,7 +731,7 @@ Gfx gLinkHumanRightShoulderDL[] = {
     gsSPEndDisplayList(),
 };
 
-Gfx gLinkHumanRightForearmDL[] = {
+Gfx gLinkChildRightForearmDL[] = {
     gsSPMatrix(0x0D000340, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_FOG | G_LIGHTING | G_SHADING_SMOOTH),
@@ -742,7 +742,7 @@ Gfx gLinkHumanRightForearmDL[] = {
     gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_RGBA16),
-    gsDPLoadTLUT_pal256(gLinkHumanSkinTLUT),
+    gsDPLoadTLUT_pal256(gLinkChildSkinTLUT),
     gsDPLoadTextureBlock(object_link_child_Tex_005500, G_IM_FMT_CI, G_IM_SIZ_8b, 8, 8, 0, G_TX_MIRROR | G_TX_CLAMP,
                          G_TX_MIRROR | G_TX_CLAMP, 3, 3, G_TX_NOLOD, G_TX_NOLOD),
     gsDPSetPrimColor(0, 0x80, 255, 255, 255, 255),
@@ -766,14 +766,14 @@ Gfx gLinkHumanRightForearmDL[] = {
     gsSPEndDisplayList(),
 };
 
-Gfx gLinkHumanRightHandOpenDL[] = {
+Gfx gLinkChildRightHandOpenDL[] = {
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPPipeSync(),
     gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, TEXEL0, PRIMITIVE, 0, COMBINED, 0, 0, 0, 0, COMBINED),
     gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_RGBA16),
-    gsDPLoadTLUT_pal256(gLinkHumanSkinTLUT),
+    gsDPLoadTLUT_pal256(gLinkChildSkinTLUT),
     gsDPLoadTextureBlock(object_link_child_Tex_006A00, G_IM_FMT_CI, G_IM_SIZ_8b, 16, 16, 0, G_TX_MIRROR | G_TX_CLAMP,
                          G_TX_MIRROR | G_TX_CLAMP, 4, 4, G_TX_NOLOD, G_TX_NOLOD),
     gsDPSetPrimColor(0, 0x80, 255, 255, 255, 255),
@@ -802,7 +802,7 @@ Gfx gLinkHumanRightHandOpenDL[] = {
     gsSPEndDisplayList(),
 };
 
-Gfx gLinkHumanLeftShoulderDL[] = {
+Gfx gLinkChildLeftShoulderDL[] = {
     gsSPMatrix(0x0D000440, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_FOG | G_LIGHTING | G_SHADING_SMOOTH),
@@ -831,7 +831,7 @@ Gfx gLinkHumanLeftShoulderDL[] = {
     gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, TEXEL0, PRIMITIVE, 0, COMBINED, 0, 0, 0, 0, COMBINED),
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_RGBA16),
-    gsDPLoadTLUT_pal256(gLinkHumanSkinTLUT),
+    gsDPLoadTLUT_pal256(gLinkChildSkinTLUT),
     gsDPLoadTextureBlock(object_link_child_Tex_005500, G_IM_FMT_CI, G_IM_SIZ_8b, 8, 8, 0, G_TX_MIRROR | G_TX_CLAMP,
                          G_TX_MIRROR | G_TX_CLAMP, 3, 3, G_TX_NOLOD, G_TX_NOLOD),
     gsDPSetPrimColor(0, 0x80, 255, 255, 255, 255),
@@ -854,7 +854,7 @@ Gfx gLinkHumanLeftShoulderDL[] = {
     gsSPEndDisplayList(),
 };
 
-Gfx gLinkHumanLeftForearmDL[] = {
+Gfx gLinkChildLeftForearmDL[] = {
     gsSPMatrix(0x0D000280, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsSPLoadGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_FOG | G_LIGHTING | G_SHADING_SMOOTH),
@@ -865,7 +865,7 @@ Gfx gLinkHumanLeftForearmDL[] = {
     gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_RGBA16),
-    gsDPLoadTLUT_pal256(gLinkHumanSkinTLUT),
+    gsDPLoadTLUT_pal256(gLinkChildSkinTLUT),
     gsDPLoadTextureBlock(object_link_child_Tex_005500, G_IM_FMT_CI, G_IM_SIZ_8b, 8, 8, 0, G_TX_MIRROR | G_TX_CLAMP,
                          G_TX_MIRROR | G_TX_CLAMP, 3, 3, G_TX_NOLOD, G_TX_NOLOD),
     gsDPSetPrimColor(0, 0x80, 255, 255, 255, 255),
@@ -889,14 +889,14 @@ Gfx gLinkHumanLeftForearmDL[] = {
     gsSPEndDisplayList(),
 };
 
-Gfx gLinkHumanLeftHandOpenDL[] = {
+Gfx gLinkChildLeftHandOpenDL[] = {
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPPipeSync(),
     gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, TEXEL0, PRIMITIVE, 0, COMBINED, 0, 0, 0, 0, COMBINED),
     gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_RGBA16),
-    gsDPLoadTLUT_pal256(gLinkHumanSkinTLUT),
+    gsDPLoadTLUT_pal256(gLinkChildSkinTLUT),
     gsDPLoadTextureBlock(object_link_child_Tex_006A00, G_IM_FMT_CI, G_IM_SIZ_8b, 16, 16, 0, G_TX_MIRROR | G_TX_CLAMP,
                          G_TX_MIRROR | G_TX_CLAMP, 4, 4, G_TX_NOLOD, G_TX_NOLOD),
     gsDPSetPrimColor(0, 0x80, 255, 255, 255, 255),
@@ -937,7 +937,7 @@ Vtx object_link_childVtx_00DF68[] = {
 #include "assets/objects/object_link_child/mm_link/object_link_childVtx_00DF68.vtx.inc"
 };
 
-Gfx gLinkHumanLeftHandClosedDL[] = {
+Gfx gLinkChildLeftHandClosedDL[] = {
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_RGBA16),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -970,7 +970,7 @@ Vtx object_link_childVtx_00E4D8[] = {
 #include "assets/objects/object_link_child/mm_link/object_link_childVtx_00E4D8.vtx.inc"
 };
 
-Gfx gLinkHumanRightHandClosedDL[] = {
+Gfx gLinkChildRightHandClosedDL[] = {
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_RGBA16),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -999,140 +999,136 @@ Gfx gLinkHumanRightHandClosedDL[] = {
     gsSPEndDisplayList(),
 };
 
-Vtx object_link_childVtx_00E858[] = {
-#include "assets/objects/object_link_child/mm_link/object_link_childVtx_00E858.vtx.inc"
-};
-
-LodLimb gLinkHumanRootLimb = { 
+LodLimb gLinkChildRootLimb = { 
     { 0, 2376, 0 }, LINK_HUMAN_LIMB_WAIST - 1, LIMB_DONE,
     { NULL, NULL }
 };
 
-LodLimb gLinkHumanWaistLimb = { 
+LodLimb gLinkChildWaistLimb = { 
     { -4, -104, 0 }, LINK_HUMAN_LIMB_LOWER_ROOT - 1, LINK_HUMAN_LIMB_UPPER_ROOT - 1,
-    { gLinkHumanWaistDL, gLinkHumanWaistDL }
+    { gLinkChildWaistNearDL, gLinkChildWaistNearDL }
 };
 
-LodLimb gLinkHumanLowerRootLimb = { 
+LodLimb gLinkChildLowerRootLimb = { 
     { 607, 0, 0 }, LINK_HUMAN_LIMB_RIGHT_THIGH - 1, LIMB_DONE,
     { NULL, NULL }
 };
 
-LodLimb gLinkHumanRightThighLimb = { 
+LodLimb gLinkChildRightThighLimb = { 
     { -172, 50, -190 }, LINK_HUMAN_LIMB_RIGHT_SHIN - 1, LINK_HUMAN_LIMB_LEFT_THIGH - 1,
-    { gLinkHumanRightThighDL, gLinkHumanRightThighDL }
+    { gLinkChildRightThighDL, gLinkChildRightThighDL }
 };
 
-LodLimb gLinkHumanRightShinLimb = { 
+LodLimb gLinkChildRightShinLimb = { 
     { 697, 0, 0 }, LINK_HUMAN_LIMB_RIGHT_FOOT - 1, LIMB_DONE,
-    { gLinkHumanRightShinDL, gLinkHumanRightShinDL }
+    { gLinkChildRightShinDL, gLinkChildRightShinDL }
 };
 
-LodLimb gLinkHumanRightFootLimb = { 
+LodLimb gLinkChildRightFootLimb = { 
     { 825, 5, 11 }, LIMB_DONE, LIMB_DONE,
-    { gLinkHumanRightFootDL, gLinkHumanRightFootDL }
+    { gLinkChildRightFootDL, gLinkChildRightFootDL }
 };
 
-LodLimb gLinkHumanLeftThighLimb = { 
+LodLimb gLinkChildLeftThighLimb = { 
     { -170, 57, 192 }, LINK_HUMAN_LIMB_LEFT_SHIN - 1, LIMB_DONE,
-    { gLinkHumanLeftThighDL, gLinkHumanLeftThighDL }
+    { gLinkChildLeftThighDL, gLinkChildLeftThighDL }
 };
 
-LodLimb gLinkHumanLeftShinLimb = { 
+LodLimb gLinkChildLeftShinLimb = { 
     { 695, 0, 0 }, LINK_HUMAN_LIMB_LEFT_FOOT - 1, LIMB_DONE,
-    { gLinkHumanLeftShinDL, gLinkHumanLeftShinDL }
+    { gLinkChildLeftShinDL, gLinkChildLeftShinDL }
 };
 
-LodLimb gLinkHumanLeftFootLimb = { 
+LodLimb gLinkChildLeftFootLimb = { 
     { 817, 8, 4 }, LIMB_DONE, LIMB_DONE,
-    { gLinkHumanLeftFootDL, gLinkHumanLeftFootDL }
+    { gLinkChildLeftFootDL, gLinkChildLeftFootDL }
 };
 
-LodLimb gLinkHumanUpperRootLimb = { 
+LodLimb gLinkChildUpperRootLimb = { 
     { 0, -103, -7 }, LINK_HUMAN_LIMB_HEAD - 1, LIMB_DONE,
     { NULL, NULL }
 };
 
-LodLimb gLinkHumanHeadLimb = { 
+LodLimb gLinkChildHeadLimb = { 
     { 996, -201, -1 }, LINK_HUMAN_LIMB_HAT - 1, LINK_HUMAN_LIMB_COLLAR - 1,
-    { gLinkHumanHeadDL, gLinkHumanHeadDL }
+    { gLinkChildHeadDL, gLinkChildHeadDL }
 };
 
-LodLimb gLinkHumanHatLimb = { 
+LodLimb gLinkChildHatLimb = { 
     { -365, -670, 0 }, LIMB_DONE, LIMB_DONE,
-    { gLinkHumanHatDL, gLinkHumanHatDL }
+    { gLinkChildHatDL, gLinkChildHatDL }
 };
 
-LodLimb gLinkHumanCollarLimb = { 
+LodLimb gLinkChildCollarLimb = { 
     { 0, 0, 0 }, LIMB_DONE, LINK_HUMAN_LIMB_LEFT_SHOULDER - 1,
-    { gLinkHumanCollarDL, gLinkHumanCollarDL }
+    { gLinkChildCollarDL, gLinkChildCollarDL }
 };
 
-LodLimb gLinkHumanLeftShoulderLimb = { 
+LodLimb gLinkChildLeftShoulderLimb = { 
     { 696, -175, 466 }, LINK_HUMAN_LIMB_LEFT_FOREARM - 1, LINK_HUMAN_LIMB_RIGHT_SHOULDER - 1,
-    { gLinkHumanLeftShoulderDL, gLinkHumanLeftShoulderDL }
+    { gLinkChildLeftShoulderDL, gLinkChildLeftShoulderDL }
 };
 
-LodLimb gLinkHumanLeftForearmLimb = { 
+LodLimb gLinkChildLeftForearmLimb = { 
     { 581, 0, 0 }, LINK_HUMAN_LIMB_LEFT_HAND - 1, LIMB_DONE,
-    { gLinkHumanLeftForearmDL, gLinkHumanLeftForearmDL }
+    { gLinkChildLeftForearmDL, gLinkChildLeftForearmDL }
 };
 
-LodLimb gLinkHumanLeftHandLimb = { 
+LodLimb gLinkChildLeftHandLimb = { 
     { 514, 0, 0 }, LIMB_DONE, LIMB_DONE,
-    { gLinkHumanLeftHandOpenDL, gLinkHumanLeftHandOpenDL }
+    { gLinkChildLeftHandOpenDL, gLinkChildLeftHandOpenDL }
 };
 
-LodLimb gLinkHumanRightShoulderLimb = { 
+LodLimb gLinkChildRightShoulderLimb = { 
     { 696, -175, -466 }, LINK_HUMAN_LIMB_RIGHT_FOREARM - 1, LINK_HUMAN_LIMB_SHEATH - 1,
-    { gLinkHumanRightShoulderDL, gLinkHumanRightShoulderDL }
+    { gLinkChildRightShoulderNearDL, gLinkChildRightShoulderNearDL }
 };
 
-LodLimb gLinkHumanRightForearmLimb = { 
+LodLimb gLinkChildRightForearmLimb = { 
     { 577, 0, 0 }, LINK_HUMAN_LIMB_RIGHT_HAND - 1, LIMB_DONE,
-    { gLinkHumanRightForearmDL, gLinkHumanRightForearmDL }
+    { gLinkChildRightForearmDL, gLinkChildRightForearmDL }
 };
 
-LodLimb gLinkHumanRightHandLimb = { 
+LodLimb gLinkChildRightHandLimb = { 
     { 525, 0, 0 }, LIMB_DONE, LIMB_DONE,
-    { gLinkHumanRightHandOpenDL, gLinkHumanRightHandOpenDL }
+    { gLinkChildRightHandOpenDL, gLinkChildRightHandOpenDL }
 };
 
-LodLimb gLinkHumanSheathLimb = { 
+LodLimb gLinkChildSheathLimb = { 
     { 657, -550, 367 }, LIMB_DONE, LINK_HUMAN_LIMB_TORSO - 1,
-    { gLinkHumanSheathedKokiriSwordDL, gLinkHumanSheathedKokiriSwordDL }
+    { gLinkChildSheathedKokiriSwordDL, gLinkChildSheathedKokiriSwordDL }
 };
 
-LodLimb gLinkHumanTorsoLimb = { 
+LodLimb gLinkChildTorsoLimb = { 
     { 0, 0, 0 }, LIMB_DONE, LIMB_DONE,
-    { gLinkHumanTorsoDL, gLinkHumanTorsoDL }
+    { gLinkChildTorsoDL, gLinkChildTorsoDL }
 };
 
-void* gLinkHumanSkelLimbs[] = {
-    &gLinkHumanRootLimb, /* LINK_HUMAN_LIMB_ROOT */
-    &gLinkHumanWaistLimb, /* LINK_HUMAN_LIMB_WAIST */
-    &gLinkHumanLowerRootLimb, /* LINK_HUMAN_LIMB_LOWER_ROOT */
-    &gLinkHumanRightThighLimb, /* LINK_HUMAN_LIMB_RIGHT_THIGH */
-    &gLinkHumanRightShinLimb, /* LINK_HUMAN_LIMB_RIGHT_SHIN */
-    &gLinkHumanRightFootLimb, /* LINK_HUMAN_LIMB_RIGHT_FOOT */
-    &gLinkHumanLeftThighLimb, /* LINK_HUMAN_LIMB_LEFT_THIGH */
-    &gLinkHumanLeftShinLimb, /* LINK_HUMAN_LIMB_LEFT_SHIN */
-    &gLinkHumanLeftFootLimb, /* LINK_HUMAN_LIMB_LEFT_FOOT */
-    &gLinkHumanUpperRootLimb, /* LINK_HUMAN_LIMB_UPPER_ROOT */
-    &gLinkHumanHeadLimb, /* LINK_HUMAN_LIMB_HEAD */
-    &gLinkHumanHatLimb, /* LINK_HUMAN_LIMB_HAT */
-    &gLinkHumanCollarLimb, /* LINK_HUMAN_LIMB_COLLAR */
-    &gLinkHumanLeftShoulderLimb, /* LINK_HUMAN_LIMB_LEFT_SHOULDER */
-    &gLinkHumanLeftForearmLimb, /* LINK_HUMAN_LIMB_LEFT_FOREARM */
-    &gLinkHumanLeftHandLimb, /* LINK_HUMAN_LIMB_LEFT_HAND */
-    &gLinkHumanRightShoulderLimb, /* LINK_HUMAN_LIMB_RIGHT_SHOULDER */
-    &gLinkHumanRightForearmLimb, /* LINK_HUMAN_LIMB_RIGHT_FOREARM */
-    &gLinkHumanRightHandLimb, /* LINK_HUMAN_LIMB_RIGHT_HAND */
-    &gLinkHumanSheathLimb, /* LINK_HUMAN_LIMB_SHEATH */
-    &gLinkHumanTorsoLimb, /* LINK_HUMAN_LIMB_TORSO */
+void* gLinkChildSkelLimbs[] = {
+    &gLinkChildRootLimb, /* LINK_HUMAN_LIMB_ROOT */
+    &gLinkChildWaistLimb, /* LINK_HUMAN_LIMB_WAIST */
+    &gLinkChildLowerRootLimb, /* LINK_HUMAN_LIMB_LOWER_ROOT */
+    &gLinkChildRightThighLimb, /* LINK_HUMAN_LIMB_RIGHT_THIGH */
+    &gLinkChildRightShinLimb, /* LINK_HUMAN_LIMB_RIGHT_SHIN */
+    &gLinkChildRightFootLimb, /* LINK_HUMAN_LIMB_RIGHT_FOOT */
+    &gLinkChildLeftThighLimb, /* LINK_HUMAN_LIMB_LEFT_THIGH */
+    &gLinkChildLeftShinLimb, /* LINK_HUMAN_LIMB_LEFT_SHIN */
+    &gLinkChildLeftFootLimb, /* LINK_HUMAN_LIMB_LEFT_FOOT */
+    &gLinkChildUpperRootLimb, /* LINK_HUMAN_LIMB_UPPER_ROOT */
+    &gLinkChildHeadLimb, /* LINK_HUMAN_LIMB_HEAD */
+    &gLinkChildHatLimb, /* LINK_HUMAN_LIMB_HAT */
+    &gLinkChildCollarLimb, /* LINK_HUMAN_LIMB_COLLAR */
+    &gLinkChildLeftShoulderLimb, /* LINK_HUMAN_LIMB_LEFT_SHOULDER */
+    &gLinkChildLeftForearmLimb, /* LINK_HUMAN_LIMB_LEFT_FOREARM */
+    &gLinkChildLeftHandLimb, /* LINK_HUMAN_LIMB_LEFT_HAND */
+    &gLinkChildRightShoulderLimb, /* LINK_HUMAN_LIMB_RIGHT_SHOULDER */
+    &gLinkChildRightForearmLimb, /* LINK_HUMAN_LIMB_RIGHT_FOREARM */
+    &gLinkChildRightHandLimb, /* LINK_HUMAN_LIMB_RIGHT_HAND */
+    &gLinkChildSheathLimb, /* LINK_HUMAN_LIMB_SHEATH */
+    &gLinkChildTorsoLimb, /* LINK_HUMAN_LIMB_TORSO */
 };
 
-FlexSkeletonHeader gLinkHumanSkel = { 
-    { gLinkHumanSkelLimbs, ARRAY_COUNT(gLinkHumanSkelLimbs) }, 18
+FlexSkeletonHeader gLinkChildSkel = { 
+    { gLinkChildSkelLimbs, ARRAY_COUNT(gLinkChildSkelLimbs) }, 18
 };
 
