@@ -1017,14 +1017,20 @@ beginseg
     include "$(BUILD_DIR)/assets/objects/object_link_child/common/link_child_equippable_masks_model.o"
     include "$(BUILD_DIR)/assets/objects/object_link_child/common/link_child_deku_stick_model.o"
     include "$(BUILD_DIR)/assets/objects/object_link_child/common/link_child_goron_bracelet_model.o"
+    include "$(BUILD_DIR)/assets/objects/object_link_child/common/link_child_bottle_model.o"
     include "$(BUILD_DIR)/assets/objects/object_link_child/oot_link/link_child_deku_shield.o"
     include "$(BUILD_DIR)/assets/objects/object_link_child/oot_link/link_child_slingshot_string_model.o"
+    
     include "$(BUILD_DIR)/assets/objects/object_link_child/object_link_child.o"
 
 #ifdef USE_MM_CHILD_LINK
     include "$(BUILD_DIR)/assets/objects/object_link_child/mm_link/link_child_mm_skel.o"
+    include "$(BUILD_DIR)/assets/objects/object_link_child/oot_link/link_child_oot_hands_model.o" // Temporary
+    include "$(BUILD_DIR)/assets/objects/object_link_child/oot_link/link_child_oot_kokiri_sword.o" // Temporary
 #else
     include "$(BUILD_DIR)/assets/objects/object_link_child/oot_link/link_child_oot_skel.o"
+    include "$(BUILD_DIR)/assets/objects/object_link_child/oot_link/link_child_oot_hands_model.o"
+    include "$(BUILD_DIR)/assets/objects/object_link_child/oot_link/link_child_oot_kokiri_sword.o"
 #endif
     number 6
 endseg
