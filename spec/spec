@@ -1016,6 +1016,7 @@ beginseg
     include "$(BUILD_DIR)/assets/objects/object_link_child/common/link_child_eye_mouth_textures.o"
     include "$(BUILD_DIR)/assets/objects/object_link_child/common/link_child_equippable_masks_model.o"
     include "$(BUILD_DIR)/assets/objects/object_link_child/common/link_child_deku_stick_model.o"
+    include "$(BUILD_DIR)/assets/objects/object_link_child/common/link_child_goron_bracelet_model.o"
     include "$(BUILD_DIR)/assets/objects/object_link_child/oot_link/link_child_deku_shield.o"
     include "$(BUILD_DIR)/assets/objects/object_link_child/oot_link/link_child_slingshot_string_model.o"
     include "$(BUILD_DIR)/assets/objects/object_link_child/object_link_child.o"
